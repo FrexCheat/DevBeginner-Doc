@@ -1,6 +1,8 @@
 {
   "title": "Java",
   "pages": [
-    "overview"
+    "overview",
+    "idea",
+    "jetbrains"
   ]
 }
