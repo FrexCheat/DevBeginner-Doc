@@ -2,7 +2,7 @@
 title: Visual Studio Code
 ---
 
-![vscode_icon | origional repo: https://github.com/Aikoyori/ProgrammingVTuberLogos](./images/vs-code/icon.png)
+![vscode_icon | original repo: https://github.com/Aikoyori/ProgrammingVTuberLogos](images/vs-code/icon.png)
 
 ## 简介
 
@@ -20,7 +20,7 @@ Visual Studio Code（简称 VSCode 或 VSC）是由微软开发的开源、免�
 
 进入 [Visual Studio Code 下载官网](https://code.visualstudio.com/Download)，按下图的指示点击按钮下载
 
-![vscode-download](./images/vs-code/vsc_download.png)
+![vscode-download](images/vs-code/vsc_download.png)
 
 ### 本站下载
 
@@ -33,7 +33,7 @@ Visual Studio Code（简称 VSCode 或 VSC）是由微软开发的开源、免�
 安装程序下载完成后，双击打开，之后按照安装程序的指引完成安装。  
 在这里首先勾选 ***“我同意此协议”***
 
-![vscode installation  | image_1-1-1](./images/vs-code/vsc1.png)
+![vscode installation  | image_1-1-1](images/vs-code/vsc1.png)
 
 建议将VSCode安装至空间充足的磁盘上，在这里不建议直接安装至C盘。 ~~除非你的电脑只有C盘~~  
 
@@ -50,23 +50,23 @@ Visual Studio Code（简称 VSCode 或 VSC）是由微软开发的开源、免�
 
 >顺带一提，我个人也不太喜欢安装路径中出现空格，所以我会把默认的安装文件夹名“Microsoft VS Code” 换成 “vscode”，实际的安装中，你可以按照自己的喜好来自由命名VSCode所安装在的文件夹。
 
-![vscode installation | image_1-1-2](./images/vs-code/vsc2.png)
+![vscode installation | image_1-1-2](images/vs-code/vsc2.png)
 
 这一步会在你的开始菜单创建一个快捷方式，如果你不想要在开始菜单创建快捷方式，勾选下方的 ***“不创建开始菜单文件夹”*** 即可。
 
-![vscode installation | image_1-1-3](./images/vs-code/vsc3.png)
+![vscode installation | image_1-1-3](images/vs-code/vsc3.png)
 
 接下来勾选下图中的必要选项，同样地，如果你不想在桌面上创建快捷方式，取消勾选 ***“创建桌面快捷方式”*** 即可。
 
-![vscode installation | image_1-1-4](./images/vs-code/vsc4.png)
+![vscode installation | image_1-1-4](images/vs-code/vsc4.png)
 
 最后在开始正式安装前，目测检查一下安装信息是否有误
 
-![vscode installation | image_1-1-5](./images/vs-code/vsc5.png)
+![vscode installation | image_1-1-5](images/vs-code/vsc5.png)
 
 如果没有什么其他问题，点击安装并耐心等待几分钟，vscode本体就在你的电脑上安装好了。
 
-![vscode installation | image_1-1-6](./images/vs-code/vsc6_run.png)
+![vscode installation | image_1-1-6](images/vs-code/vsc6_run.png)
 
 安装完成之后勾选 ***“运行 Visual Studio Code”*** 并点击完成，不出意外的话，你就可以看到VSCode的欢迎界面了，VSCode本体的安装也就此完成。
 
@@ -91,51 +91,51 @@ Visual Studio Code（简称 VSCode 或 VSC）是由微软开发的开源、免�
 
 然后双击打开安装程序，按照指引完成MSYS2的安装
 
-![msys2 installation | image_1-2-1](./images/vs-code/msys2_1.png)
+![msys2 installation | image_1-2-1](images/vs-code/msys2_1.png)
 
 同样地，推荐安装在空间充足的磁盘（如D盘），安装路径中最好不要出现中文名称。
 
-![msys2 installation | image_1-2-2](./images/vs-code/msys2_2.png)
+![msys2 installation | image_1-2-2](images/vs-code/msys2_2.png)
 
 在开始菜单中创建一个快捷方式，并且你不能取消这一步。 ~~是的，你没得选~~
 
-![msys2 installation | image_1-2-3](./images/vs-code/msys2_3.png)
+![msys2 installation | image_1-2-3](images/vs-code/msys2_3.png)
 
 耐心等待，放轻松，由于大陆的特色网络环境，出现卡50%的情况是正常的，一般只需多等几分钟即可。
 
-![msys2 installation | image_1-2-4](./images/vs-code/msys2_4_50.png)
+![msys2 installation | image_1-2-4](images/vs-code/msys2_4_50.png)
 
 安装结束后，**勾选 `Run MSYS2 now` 这个选项**，然后再点击Finish按钮，这样在关闭安装程序后会自动弹出一个MSYS2的终端窗口。
 
-![msys2 installation | image_1-2-5](./images/vs-code/msys2_5.png)
+![msys2 installation | image_1-2-5](images/vs-code/msys2_5.png)
 
 **“完蛋了！我好像忘记勾那个框框了！”**  
 *——不用太慌张，如果忘记勾选的话，直接在Windows的搜索栏里搜索 **“MSYS2 UCRT64”** 并运行即可，这同样会呼出MSYS2的终端窗口*
 
-![msys2 installation | msys2_icon](./images/vs-code/msys2_icon.png)
+![msys2 installation | msys2_icon](images/vs-code/msys2_icon.png)
 
 在弹出的窗口中，输入下面的指令来安装MinGW-W64工具集：  
 ```shell
 pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 ```
 
-![msys2 installation | image_1-2-6](./images/vs-code/msys2_6.png)
+![msys2 installation | image_1-2-6](images/vs-code/msys2_6.png)
 
 然后在终端中按回车键接受默认选项
 
-![msys2 installation | image_1-2-7](./images/vs-code/msys2_7.png)
+![msys2 installation | image_1-2-7](images/vs-code/msys2_7.png)
 
 最后在终端中输入Y并按回车键（或者直接按回车键）来确认安装
 
-![msys2 installation | image_1-2-8](./images/vs-code/msys2_8.png)
+![msys2 installation | image_1-2-8](images/vs-code/msys2_8.png)
 
 依旧耐心等待即可。
 
-![msys2 installation | image_1-2-9](./images/vs-code/msys2_9.png)
+![msys2 installation | image_1-2-9](images/vs-code/msys2_9.png)
 
 这是安装完成之后的样子，确认所有组件都已经安装完毕后，你就可以安全关闭终端窗口了，MINGW-W64至此也就安装完毕。
 
-![msys2 installation | image_1-2-10](./images/vs-code/msys2_10.png)
+![msys2 installation | image_1-2-10](images/vs-code/msys2_10.png)
 
 ## 配置
 
@@ -144,37 +144,37 @@ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 首先让我们打开 Windows设置  
 找到 ***系统->系统信息->高级系统设置*** 并点击
 
-![env path settings](./images/vs-code/env_path_2.png)
+![env path settings](images/vs-code/env_path_2.png)
 
 然后点击进入 ***高级->环境变量***
 
-![env path settings](./images/vs-code/env_path_3.png)
+![env path settings](images/vs-code/env_path_3.png)
 
 ::: info :clipboard:Tips
 或者更简单一些 你也可以直接在Windows的搜索栏中搜索 ***“编辑系统环境变量”*** 并打开，同样可以打开上图所示的窗口。
 
-![env path settings](./images/vs-code/env_path_1.png)
+![env path settings](images/vs-code/env_path_1.png)
 :::
 
 在下方的 ***“系统变量”*** 中找到 ***“Path”***，直接双击进入编辑，或者单击之后再点击下方的 ***“编辑”***
 
-![env path settings](./images/vs-code/env_path_4.png)
+![env path settings](images/vs-code/env_path_4.png)
   
 然后点击 ***“新建”***，并输入你的工具集所在目录的路径，例如，如果你将MSYS2默认安装在了C盘，默认的路径应该为 `C:\msys64\ucrt64\bin\`   
 
-![env path settings](./images/vs-code/env_path_5.png)
+![env path settings](images/vs-code/env_path_5.png)
 
 本教程示例中的目录是 `D:\Software\msys64\ucrt64\bin\` 如果你在安装时选择了其他的安装目录，你就需要填写你当时安装mingw64的目录  
 
 总之，你需要输入的东西看起来应该是像 `X:\xxx\...\ucrt64\bin\` 的样子
 
-![env path settings](./images/vs-code/env_path_6.png)
+![env path settings](images/vs-code/env_path_6.png)
 
 最后，点击 ***“确定”*** 来保存环境变量配置
 
 然后打开cmd或powershell，依次输入 `gcc --version` ，`g++ --version`，`gdb --version` 来测试环境变量是否配置正常  
 
-![env path settings](./images/vs-code/env_path_7.png)
+![env path settings](images/vs-code/env_path_7.png)
 
 如果你的终端里像上图所示显示了gcc，g++，gdb的版本信息，那么很好，你已经成功地把我们所需的环境变量配置完毕了。
 
@@ -188,18 +188,18 @@ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 
 首先可以选择一个你喜欢的主题，VSCode目前有四种预设好的官方主题可供选择
 
-![env vscode settings](./images/vs-code/env_vsc_1.png)
+![env vscode settings](images/vs-code/env_vsc_1.png)
 
-进入下一步并点击 ***“Browse Language Extentions”***
+进入下一步并点击 ***“Browse Language Extensions”***
 
-然后在左侧弹出的市场中安装 ***“C/C++ Extention Pack”*** 这个扩展
+然后在左侧弹出的市场中安装 ***“C/C++ Extension Pack”*** 这个扩展
 
-![env vscode settings](./images/vs-code/env_vsc_2.png)
+![env vscode settings](images/vs-code/env_vsc_2.png)
 
 VSCode默认为英文界面，如果需要中文界面，同样可以在扩展市场中安装  
 在扩展市场中搜索 ***“Chinese (Simplified)”*** 来找到并安装简体中文语言包，重启VSCode后就可以将VSCode切换到中文界面
 
-![env vscode settings](./images/vs-code/env_vsc_3.png)
+![env vscode settings](images/vs-code/env_vsc_3.png)
 
 接下来让我们回到扩展界面，删除搜索框中的搜索内容，此时扩展商店中会列出我们已经安装好的扩展  
 
@@ -207,15 +207,15 @@ VSCode默认为英文界面，如果需要中文界面，同样可以在扩展�
 
 点击右边的齿轮图标进入扩展设置
 
-![env vscode settings](./images/vs-code/env_vsc_4.png)
+![env vscode settings](images/vs-code/env_vsc_4.png)
 
 找到 ***用户*** 设置中的 ***“C_Cpp > Default: Compiler Path”***，点击 ***“在 settings.json 中编辑”***
 
-![env vscode settings](./images/vs-code/env_vsc_5.png)
+![env vscode settings](images/vs-code/env_vsc_5.png)
 
 如图所示，输入你的工具集所在目录的路径
 
-![env vscode settings](./images/vs-code/env_vsc_6.png)
+![env vscode settings](images/vs-code/env_vsc_6.png)
 
 ::: info :clipboard:Tips
 这一步所填写的路径与先前我们配置环境变量时所填写的的路径相同，只不过需要注意的是，在VSCode的配置文件中，分隔目录层级的符号为两个反斜杠 `\\` 或者一个正斜杠 `/` ，而不是一个反斜杠 `\`
@@ -243,11 +243,11 @@ VSCode默认为英文界面，如果需要中文界面，同样可以在扩展�
 在VSCode中，你的项目文件夹所在路径中 **一 定 不 能 有 中 文 存 在**，类似 `C:/Users/Documents/Code/你好世界` 或者是 `C:/Users/Documents/代码/HelloWorld` 的项目路径都会导致你的程序在VSCode中无法编译运行，在使用VSCode时请务必牢记这点
 :::
 
-![env vscode settings](./images/vs-code/env_vsc_7.png)
+![env vscode settings](images/vs-code/env_vsc_7.png)
 
 然后在VSCode中选择 ***打开文件夹***，找到我们新创建的项目文件夹并打开它
 
-![env vscode settings](./images/vs-code/env_vsc_8.png)
+![env vscode settings](images/vs-code/env_vsc_8.png)
 
 现在，新建一个名为 ***“helloworld.cpp”*** 的文件，开始为这份C++源代码注入灵魂：
 
@@ -262,17 +262,17 @@ int main(){
 
 Ctrl+S 保存一下这份新鲜出炉的HelloWorld，接下来点击右上角出现的 ***“调试C/C++文件”*** 图标
 
-![env vscode settings](./images/vs-code/env_vsc_9.png)
+![env vscode settings](images/vs-code/env_vsc_9.png)
 
 点击 ***C/C++: g++.exe 生成和调试活动文件***
 
-![env vscode settings](./images/vs-code/env_vsc_10.png)
+![env vscode settings](images/vs-code/env_vsc_10.png)
 
 等待编译完成...然后...
 
 庆贺罢！
 
-![env vscode settings](./images/vs-code/env_vsc_11.png)
+![env vscode settings](images/vs-code/env_vsc_11.png)
 
 ## 尾声
 

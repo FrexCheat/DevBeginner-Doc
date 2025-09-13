@@ -172,7 +172,7 @@ new Thread(new Runnable(){
 * `public final void setPriority(int newPriority)` ：改变线程的优先级，范围在 `[1,10]` 之间。
 ## 4.多线程的生命周期
 线程的生命周期有六种状态: 新建(New)、就绪(Runnable)、锁阻塞(Blocked)、计时等待(Timed_waiting)、无限等待(Waiting)、死亡(Teaminated)。CPU需要在多条线程之间切换，于是线程状态会多次在运行、阻塞、就绪之间切换。
-![线程的生命周期](./images/multithread1.png)
+![线程的生命周期](images/multithread1.png)
 ### 4.1 状态简介
 此处参考 zzuli Mooc Java 程序设计技术课件
 - 新建态: 使用 `new` 运算符创建一个线程对象后，该线程仅仅是一个空对象，系统没用为它分配资源，该线程处于新建态。
@@ -332,7 +332,7 @@ class Communication implements Runnable {
 2. `FutureTask` 类
     - `FutureTask` 同时实现了 `Runnable` 和 `Future` 接口。它既可以作为 `Runnable` 被线程执行，又可以作为 `Future` 得到 `Callable` 的返回值（`FutureTask` 是 `Future` 接口的唯一的实现类）
 ### 7.3 三者之间的关系
-![线程的生命周期](./images/multithread2.png)
+![线程的生命周期](images/multithread2.png)
 ### 7.4 示例代码
 ```java 
 //1.创建一个实现Callable的实现类

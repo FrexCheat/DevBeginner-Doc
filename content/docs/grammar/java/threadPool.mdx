@@ -142,13 +142,13 @@ public static void main(String[] args) {
 - 参数过多，代码结构引入数据结构与算法，增加使用难度
 ## 线程池概述
 ### 线程池继承结构
-![threadpool1](./images/threadpool1.png)
+![threadpool1](images/threadpool1.png)
 - 最常用的是 `ThreadPoolExecutor`
 - 调度用 `ScheduledThreadPoolExecutor`，类似 `Timer` 和 `TimerTask`。
 - 任务拆分合并用 `ForkJoinPool`
 - `Executors`是工具类，协助创建线程池的
 ### 线程池工作状态
-![threadpool2](./images/threadpool2.png)
+![threadpool2](images/threadpool2.png)
 - RUNNING（运行状态）：这是线程池的初始状态。
     - 在此状态下，线程池接受新任务，并且也会处理等待队列中的任务。
     - 线程池的线程会一直运行，直到被转换到其他状态。
@@ -219,7 +219,7 @@ public static void main(String[] args) {
 线程池的编程模式下，任务是提交给整个线程池，而不是直接提交给某个线程，线程池在拿到任务后，就在内部协调空闲的线程，如果有，则将任务交给某个空闲的华线程。
 
 一个线程同时只能执行一个任务，但可以同时向一个线程池提交多个任务。
-![threadpool3](./images/threadpool3.png)
+![threadpool3](images/threadpool3.png)
 
 当一个任务被提交，线程池会进行如下工作：
 - 首先判断当前的核心线程数量如果小于核心线程数，创建一个核心线程并执行任务
@@ -323,7 +323,7 @@ public ThreadPoolExecutor(int corePoolSize,
 ### execute 方法
 `ThreadPoolExecutor` 的最基本使用方式就是通过 `execute` 方法提交一个 `Runnable` 任务，首先看图理解 `execute` 的执行逻辑
 
-![threadpool4](./images/threadpool4.png)
+![threadpool4](images/threadpool4.png)
 
 查看源码中的 `execute` 方法，这里我们分层次来看，先看最主要的外部的几个条件判断：
 ```java
