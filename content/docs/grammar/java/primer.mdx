@@ -1,11 +1,14 @@
 ---
 title: 初步体验
 ---
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+
 
 在这里，将带领大家通过记事本开发我们的第一个 Java 程序 `HelloWorld`，目的是为了熟悉 Java 开发的整个流程，在实际开发中，我们可以通过 idea、eclipse 等工具使我们的开发流程大大简化
 
 <Callout type="warning">
-为保证大家初步体验的成功，请大家先严格按照事例中的内容完成
+为保证大家初步体验的成功，请大家先严格按照示例中的内容完成
 </Callout>
 
 ## 开发步骤
@@ -17,6 +20,9 @@ Java 程序开发三步骤：**编写**、**编译**、**运行**。
 - 通过 java.exe 命令对生成的 class 文件进行运行
 
 ![hw1](images/hw1.png)
+
+<Steps>
+<Step>
 
 ## 编写
 
@@ -33,9 +39,12 @@ Java 程序开发三步骤：**编写**、**编译**、**运行**。
 ![hw4](images/hw4.png)
 </Callout>
 
+</Step>
+
+<Step>
 ## 编译
 
-第一个 HelloWord 源程序就编写完成了，但是这个文件是程序员编写的，JVM 是看不懂的，也就不能运行，因此我们必须将编写好的 Java 源文件 编译成JVM 可以看懂字节码文件 ，也就是 `.class` 文件
+第一个 HelloWorld 源程序就编写完成了。但是这个文件是程序员编写的，JVM 是看不懂也不能直接运行，因此我们必须将编写好的 Java 源文件编译成 JVM 可以看懂字节码文件，也就是 `.class` 文件
 
 1. 在该源程序目录中，在地址栏处输入 `cmd`
 
@@ -45,12 +54,19 @@ Java 程序开发三步骤：**编写**、**编译**、**运行**。
 
 ![hw6](images/hw6.png)
 
+</Step>
+
+<Step>
+
 ## 运行
 
 1. 再次回到源文件夹，在命令框输入 `cmd` 开始命令框
 2. 输入命令：`java 主类名字`，即 `java HelloWorld`，可以看到命令框打印出了 `HelloWorld`。
 
 ![hw7](images/hw7.png)
+
+</Step>
+</Steps>
 
 ## 小结
 
@@ -97,5 +113,3 @@ public static void main(String[] args){
 一个源文件中可以有多个类，编译后会生成多个.class 字节码文件。  
 但是一个源文件只能有一个 public 的类。
 </Callout>
-
-
