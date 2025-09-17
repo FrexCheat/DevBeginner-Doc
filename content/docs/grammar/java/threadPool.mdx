@@ -12,7 +12,7 @@ title: 线程池
 
 ```java
 public static void main(String[] args) {
-        Thread thread = new Thread(() -> System.out.println(Thread.currentThread().getName() + "is running"));
+        Thread thread = new Thread(() -> System.out.println(Thread.currentThread().getName() + " is running"));
         Thread.State state = thread.getState();
         // 线程刚创建还未执行，状态为 NEW
         System.out.println(state);
@@ -29,7 +29,7 @@ public static void main(String[] args) {
     System.out.println(state);
 }
 ```
-- BOLCKED：阻塞，获取不到锁
+- BLOCKED：阻塞，获取不到锁
 
 ```java
 public static void main(String[] args) {
@@ -219,7 +219,7 @@ public static void main(String[] args) {
 ### 线程池逻辑结构
 线程池的编程模式下，任务是提交给整个线程池，而不是直接提交给某个线程，线程池在拿到任务后，就在内部协调空闲的线程，如果有，则将任务交给某个空闲的线程。
 
-可以同时由多个其他线程向一个线程池提交多个任务，线程池负责会对任务进行协调，保证一个线程不会被多个线程所占用。
+可以同时由多个其他线程向一个线程池提交多个任务，线程池会对任务进行协调，保证一个线程不会被多个线程所占用。
 ![threadpool3](images/threadpool3.png)
 
 当一个任务被提交，线程池会进行如下工作：
@@ -253,7 +253,7 @@ public static void main(String[] args) {
     - 业界有一个比较成熟的估算公式，具体如下：
         - `最佳线程数 = ((线程等待时间 + 线程 CPU 时间) / 线程 CPU 时间) * CPU核数`
     - 通过公式可以看出：等待时间所占的比例越高，需要的线程就越多，CPU 耗时所占的比例越高，需要的线程就越少
-    - 比如在 Web 服务器处理 HTTP 请求时，假设平均线程 CPU 运行时间为 100 毫秒，而线程等待时间（比如包括 DB 操作、RPC 操作、缓存操作等）为 900 毫秒，如果 CPU 核数为 8 那么根据上面这个公式，估算如下：`(900 毫秒+100 毫秒) / 100 毫秒 * 8 = 10 * 8 = 80`，最好开 80 个线程
+    - 比如在 Web 服务器处理 HTTP 请求时，假设平均线程 CPU 运行时间为 100 毫秒，而线程等待时间（比如包括 DB 操作、RPC 操作、缓存操作等）为 900 毫秒，如果 CPU 核数为 8,那么根据上面这个公式，估算如下：`(900 毫秒+100 毫秒) / 100 毫秒 * 8 = 10 * 8 = 80`，最好开 80 个线程
 ## 关键源码剖析
 ### 属性 & 构造方法
 对于 `ThreadPoolExecutor` 有几个关键的属性，这里需要先大致了解：
@@ -322,13 +322,15 @@ public ThreadPoolExecutor(int corePoolSize,
 ```
 由此可见，当我们手动创建线程池时，线程池并不会直接工作，而是将我们手动设置的关键参数进行初始化。
 ### submit 方法
-`ThreadPoolExecutor` 提供了两种提交任务的方式：
+作为 `ExecutorService` 的实现，`ThreadPoolExecutor` 支持两种提交任务的方式：
 - `submit` 方法
 - `execute` 方法
 
 通过查看源码，我们可以很清楚的看到 `submit` 方法和 `execute` 方法的区别：
 - `submit` 方法内部会调用 `newTaskFor` 方法，将任务封装成 `FutureTask` 对象，然后再调用 `execute` 方法，从而达到结果可观测的效果：
 ```java
+// AbstractExecutorService.java
+
 public Future<?> submit(Runnable task) {
     // 空值检查
     if (task == null) throw new NullPointerException();
@@ -344,6 +346,7 @@ protected <T> RunnableFuture<T> newTaskFor(Runnable runnable, T value) {
     return new FutureTask<T>(runnable, value);
 }
 ```
++ 注：`submit` 与 `newTaskFor` 为 JDK `AbstractExecutorService` 的实现，`ThreadPoolExecutor` 通过继承获得。
 ### execute 方法
 `ThreadPoolExecutor` 的最基本使用方式就是通过 `execute` 方法提交一个 `Runnable` 任务，首先看图理解 `execute` 的执行逻辑
 
@@ -730,4 +733,7 @@ private Runnable getTask() {
     - 发现当前线程数已经达到核心线程数，尝试将任务添加到阻塞队列中 -> `workQueue.offer(command)`
     - 如果添加成功，任务就添加到阻塞队列中，线程池就会去获取任务并执行
     - 如果添加失败，说明阻塞队列已经满了，线程池就会创建新的线程去执行任务
+
+3. 如果任务既不能入队也无法新增非核心线程（线程池已饱和或非运行状态）：
+    - 触发拒绝策略：`reject(command)`
 
