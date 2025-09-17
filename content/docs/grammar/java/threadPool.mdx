@@ -22,7 +22,7 @@ public static void main(String[] args) {
 
 ```java
 public static void main(String[] args) {
-    Thread thread = new Thread(() -> System.out.println(Thread.currentThread().getName() + "is running"));
+    Thread thread = new Thread(() -> System.out.println(Thread.currentThread().getName() + " is running"));
     thread.start();
     Thread.State state = thread.getState();
     // 调用 start() 方法,可以执行，但不代表一定在执行
@@ -111,7 +111,7 @@ public static void main(String[] args) {
 
 ```java
 public static void main(String[] args) {
-        Thread thread = new Thread(() -> System.out.println(Thread.currentThread().getName() + "is running"));
+        Thread thread = new Thread(() -> System.out.println(Thread.currentThread().getName() + " is running"));
         thread.start();
         try {
             // 等待线程执行完毕
@@ -384,7 +384,7 @@ public void execute(Runnable command) {
          */
         int c = ctl.get();
     	// 获取当前线程池里的线程数
-        if (workerCountOf(c) < corePoolSize) {  // 判断工作线程数，如果小于 corePollSize，则执行addWork
+        if (workerCountOf(c) < corePoolSize) {  // 判断工作线程数，如果小于 corePoolSize，则执行 addWorker
             if (addWorker(command, true))
                 return;
             c = ctl.get();
