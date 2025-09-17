@@ -9,13 +9,16 @@
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@orama/stopwords": "^3.1.13",
     "@orama/tokenizers": "^3.1.13",
     "fumadocs-core": "15.7.10",
     "fumadocs-mdx": "11.9.0",
     "fumadocs-ui": "15.7.10",
+    "gsap": "^3.13.0",
     "katex": "^0.16.22",
     "next": "15.5.2",
+    "next-themes": "^0.4.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "rehype-katex": "^7.0.1",
@@ -33,5 +36,5 @@
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2"
   },
-  "packageManager": "pnpm@10.15.1"
+  "packageManager": "pnpm@10.16.1"
 }

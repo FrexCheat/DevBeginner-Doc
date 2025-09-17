@@ -1,0 +1,66 @@
+:root {
+  --base-color: #abcafc;
+  --border-color: #1a58a4;
+}
+
+.hero-background {
+  opacity: 0;
+  background: url(/hero-mask.webp), radial-gradient(circle at right center, #563277, #4a378c 30%, #4172c2 55%, #32517380);
+  -webkit-mask-image: radial-gradient(ellipse 80% 40% at center center, #000 20%, #00000080 50%, #0000);
+  mask-image: radial-gradient(ellipse 80% 40% at center center, #000 20%, #00000080 50%, #0000);
+}
+
+.hero-logo {
+  transform: scale(0);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@media (max-width: 768px) {
+  .hero-logo {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-logo {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+.hero-button {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-button {
+  padding: 1em 1.8em;
+  outline: none;
+  background-color: #4b6596;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 15px;
+  overflow: hidden;
+  transition: 0.1s;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.hero-button:hover {
+  box-shadow: 0 0 10px var(--base-color), 0 0 25px var(--border-color), 0 0 50px var(--base-color);
+  transition-delay: 0.1s;
+}
+
+.hero-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 8px var(--base-color), 0 0 8px var(--border-color), 0 0 8px var(--base-color);
+  transition: 0.2s;
+}
