@@ -219,7 +219,7 @@ public static void main(String[] args) {
 ### 线程池逻辑结构
 线程池的编程模式下，任务是提交给整个线程池，而不是直接提交给某个线程，线程池在拿到任务后，就在内部协调空闲的线程，如果有，则将任务交给某个空闲的线程。
 
-可以同时由多个其他线程向一个线程池提交多个任务，线程池会对任务进行协调，保证一个线程不会被多个线程所占用。
+可以同时由多个其他线程向一个线程池提交多个任务，线程池会对任务进行协调，保证同一时刻一个线程不会被多个任务同时占用。
 ![threadpool3](images/threadpool3.png)
 
 当一个任务被提交，线程池会进行如下工作：
@@ -253,7 +253,7 @@ public static void main(String[] args) {
     - 业界有一个比较成熟的估算公式，具体如下：
         - `最佳线程数 = ((线程等待时间 + 线程 CPU 时间) / 线程 CPU 时间) * CPU核数`
     - 通过公式可以看出：等待时间所占的比例越高，需要的线程就越多，CPU 耗时所占的比例越高，需要的线程就越少
-    - 比如在 Web 服务器处理 HTTP 请求时，假设平均线程 CPU 运行时间为 100 毫秒，而线程等待时间（比如包括 DB 操作、RPC 操作、缓存操作等）为 900 毫秒，如果 CPU 核数为 8,那么根据上面这个公式，估算如下：`(900 毫秒+100 毫秒) / 100 毫秒 * 8 = 10 * 8 = 80`，最好开 80 个线程
+    - 比如在 Web 服务器处理 HTTP 请求时，假设平均线程 CPU 运行时间为 100 毫秒，而线程等待时间（比如包括 DB 操作、RPC 操作、缓存操作等）为 900 毫秒，如果 CPU 核数为 8，那么根据上面这个公式，估算如下：`(900 毫秒+100 毫秒) / 100 毫秒 * 8 = 10 * 8 = 80`，最好开 80 个线程
 ## 关键源码剖析
 ### 属性 & 构造方法
 对于 `ThreadPoolExecutor` 有几个关键的属性，这里需要先大致了解：
@@ -346,13 +346,18 @@ protected <T> RunnableFuture<T> newTaskFor(Runnable runnable, T value) {
     return new FutureTask<T>(runnable, value);
 }
 ```
-+ 注：`submit` 与 `newTaskFor` 为 JDK `AbstractExecutorService` 的实现，`ThreadPoolExecutor` 通过继承获得。
+
+<Callout type="info" title="提示">
+`submit` 与 `newTaskFor` 由 JDK `AbstractExecutorService` 提供实现，`ThreadPoolExecutor` 通过继承获得。
+</Callout>
+
 ### execute 方法
 `ThreadPoolExecutor` 的最基本使用方式就是通过 `execute` 方法提交一个 `Runnable` 任务，首先看图理解 `execute` 的执行逻辑
 
 ![threadpool4](images/threadpool4.png)
 
 查看源码中的 `execute` 方法，这里我们分层次来看，先看最主要的外部的几个条件判断：
+
 ```java
 public void execute(Runnable command) {
         if (command == null)
@@ -396,6 +401,7 @@ public void execute(Runnable command) {
             reject(command);  // 如果不能，则执行拒绝策略
     }
 ```
+
 其实源码里面的注释解释的已经很明白了，这里的逻辑其实已经说明了一些常见的问题：
 - 当提交任务时，只要核心线程数没有满，都会新建核心线程执行任务，不会使用以前创建好的空闲的核心线程去执行
 - 当无法向队列提交任务时，如果可以新建非核心线程，则会新建非核心线程并执行任务，不会在创建之后从队列中取任务执行
