@@ -219,7 +219,6 @@ public static void main(String[] args) {
 ### 线程池逻辑结构
 线程池的编程模式下，任务是提交给整个线程池，而不是直接提交给某个线程，线程池在拿到任务后，就在内部协调空闲的线程，如果有，则将任务交给某个空闲的线程。
 
-一个线程同时只能执行一个任务，但
 可以同时由多个其他线程向一个线程池提交多个任务，线程池负责会对任务进行协调，保证一个线程不会被多个线程所占用。
 ![threadpool3](images/threadpool3.png)
 
@@ -716,3 +715,19 @@ private Runnable getTask() {
 - `addWorker` 方法调用 `Worker` 的 `run` 方法
 - `Worker` 的 `run` 方法调用 `runWorker` 方法
 - `runWorker` 方法不断去用 `getTask` 获取任务执行
+
+源码分析总结：
+1. 如果线程数没有达到核心线程数：
+    - 进入 `execute` 方法
+    - 发现当前线程数没有达到核心线程数，直接进入 `addWorker(command, true)` 方法
+    - 完成计数统计，判断当前的线程池是否为可用状态
+    - 创建 `Worker` 对象，并将其添加到 `workers` 集合中
+    - 启动 `w.thread`线程，执行 `runWorker(w)` 方法
+    - 在 `runWorker(w)` 方法中，先执行 `Worker.firstTask`,然后不断调用 `getTask()` 方法从阻塞队列中获取任务并执行
+
+2. 如果线程数已经达到核心线程数，但是阻塞队列没有满：
+    - 进入 `execute` 方法
+    - 发现当前线程数已经达到核心线程数，尝试将任务添加到阻塞队列中 -> `workQueue.offer(command)`
+    - 如果添加成功，任务就添加到阻塞队列中，线程池就会去获取任务并执行
+    - 如果添加失败，说明阻塞队列已经满了，线程池就会创建新的线程去执行任务
+
