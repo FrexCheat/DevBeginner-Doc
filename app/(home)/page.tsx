@@ -1,10 +1,9 @@
-import '@/styles/hero.css';
-
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaGithub } from "react-icons/fa";
 
-import HomeHook from '@/hooks/home';
-import Github from '@/components/icons/github';
+import './_styles/home.css';
+import HomeHook from './_hooks/home';
 
 export default function HomePage() {
   return (
@@ -20,7 +19,7 @@ export default function HomePage() {
           </Link>
           <Link href="https://github.com/FrexCheat/DevBeginner-Doc" target="_blank" rel="noopener noreferrer">
             <button className="hero-button">
-              <Github className="size-6" />GitHub
+              <FaGithub />GitHub
             </button>
           </Link>
         </div>

@@ -1,4 +1,4 @@
-import '@/styles/global.css';
+import '@/app/global.css';
 import 'katex/dist/katex.css';
 
 import { RootProvider } from 'fumadocs-ui/provider';

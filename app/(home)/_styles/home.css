@@ -32,11 +32,6 @@
 }
 
 .hero-button {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.hero-button {
   padding: 1em 1.8em;
   outline: none;
   background-color: #4b6596;
@@ -52,6 +47,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.5em;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .hero-button:hover {
