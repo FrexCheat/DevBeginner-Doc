@@ -1,8 +1,8 @@
 {
   "title": "面向对象",
   "pages": [
-    "oop",
     "class_object",
+    "oop",
     "keyword"
   ]
 }

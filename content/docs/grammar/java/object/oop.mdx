@@ -4,10 +4,413 @@ title: 面向对象
 
 ## 1. 概述
 
+面向对象编程（ `Object-Oriented Programming` ，简称 `OOP` ）是一种编程范式，它将程序视为由对象组成的集合，这些对象通过封装数据和行为来实现特定的功能。除了面向对象外，还有面向过程、指令时编程和函数式编程等等。
+面向对象编程和面向过程编程的简单对比：
+1. 面向过程（ `Process-Oriented Programming` ）
+- 关注的焦点是**过程**：过程就是操作数据的步骤。如果某个过程的实现代码重复出现，那么就可以把这个过程抽取为一个 函数 。这样就可以大大简化冗余代码，便于维护。
+- c 语言就是典型的面向过程编程
+- 以函数为组织单位，以一种**执行者思维**出发。
+2. 面向对象（ `Object-Oriented Programming` ）
+- 关注的焦点是**类**：在计算机程序设计过程中，参照现实中事物，将事物的属性特征、行为特征抽象出来，用类来表示。
+- 在后来的编程语言中，大都引入了面向对象的思想，代表的语言有：`Java` , `C#` , `Python` 等等
+- 以对象为组织单位，以**设计者思维**出发，优秀的面向对象开发者往往能写出可维护性高、扩展性强的程序。
+
 ## 2. 面向对象特性-封装
+
+在面向对象中，有一个非常重要的开发原则就是：**高内聚、低耦合** ，简单解释：
+- **高内聚**：类的内部数据操作细节自己完成，不允许外部干涉；
+- **低耦合**：仅暴露少量的方法给外部使用，尽量方便外部调用。
+
+### 2.1 为什么要有封装
+
+我们已经知道，在java中所有的操作的是通过对 对象 进行操作来完成的，那么为了实现**高内聚、低耦合**，就需要把该隐藏的隐藏起来，该对外暴露的及时暴露,
+这就是进行封装的目的。
+
+
+### 2.2 如何进行封装
+
+封装是通过**权限修饰符**来实现的，权限修饰符赋予了我们对控制类或成员的可见性范围的能力。
+
+权限修饰符一共有四种：`public` , `protected` , `缺省` , `private`:
+
+| 修饰符    | 本类内部 | 本包内 | 其他内的之类 | 其他包非之类 |
+| --------- | -------- | ------ | ------------ | ------------ |
+| private   | √        | ×      | ×            | ×            |
+| 缺省      | √        | √      | ×            | ×            |
+| protected | √        | √      | √            | ×            |
+| public    | √        | √      | √            | √            |
+
+### 2.3 通过封装来实现内聚
+
+对于不想直接让外部访问的类或者方法，我们就可以使用 `private` 修饰符：
+
+**将成员变量私有化，并对外提供访问方法：**
+
+<Steps>
+<Step>
+**使用 private 修饰成员变量**
+
+```java lineNumbers
+public class Person {
+    private String name;
+    private int age;
+    private boolean marry;
+}
+```
+</Step>
+<Step>
+**提供 `get` / `set` 方法：**
+
+```java lineNumbers
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isMarry() {
+        return marry;
+    }
+
+    public void setMarry(boolean marry) {
+        this.marry = marry;
+    }
+```
+</Step>
+<Step>
+**创建一个对象，对通过方法操控其成员变量：**
+```java lineNumbers
+public class PersonTest {
+    public static void main(String[] args) {
+        Person p = new Person();
+        //实例变量私有化，跨类是无法直接使用的
+        /* p.name = "张三";
+        p.age = 23;
+        p.marry = true;*/
+        p.setName("张三");
+        System.out.println("p.name = " + p.getName());
+        p.setAge(23);
+        System.out.println("p.age = " + p.getAge());
+        p.setMarry(true);
+        System.out.println("p.marry = " + p.isMarry());
+    }
+
+}
+```
+</Step>
+
+<Step>
+**复盘：**
+
+在上面的实践中，我们创建了一个 `Person` 类，并为其每个属性都设置了 `set/get` 方法，同学们可能会觉得这么做有点多此一举：直接
+将属性暴露出来不就行了？ 但是，如何我们的 `Person` 有一个 `gender` 属性，那么我们要不要对外提供 `set` 方法呢，提供了岂不是任何人都可以修改这个对象的性别了，
+对于这种情况，我们就可以使用构造函数，即只允许创建这个对象的时候去设置他的性别：
+```java lineNumbers
+public class Person {
+    private String name;
+    private int age;
+    private boolean marry;
+    private char gender;
+
+    public Person(char gender) {
+        this.gender = gender;
+    }
+}
+``` 
+
+所以，让使用者只能通过事先预定的方法来访问数据，从而可以在该方法里面加入控制逻辑，限制对成员
+变量的不合理访问。还可以进行数据检查，从而有利于保证对象信息的完整性。
+</Step>
+</Steps>
+**将类中的一部分方法私有化，只允许内部使用：**
+
+假设我们现在有一个服务类，在服务类的每个方法都会进行同一个操作（比如打印日志，解析文件，建立连接……），那么每个类都有大量的重复方法就
+会造成代码可读行降低，也会大大提高维护成本（比如如果我们想修改打印日志的格式，那么就需要对每个公共方法中相同的部分都进行修改），因此我们
+可以把这一部分单独提取出来作为一个方法，当需要进行这个操作时直接方法即可。但是这个方法是我们内部使用的，我们又不希望外界的调用者能看到，
+所以就可以为其添加一个 `private` 修饰符来实现耦合
+
+
 
 ## 3. 面向对象特性-继承
 
+继承（ `Inheritance` ）是面向对象编程的一个重要特性，它允许一个类（子类）继承另一个类（父类）的属性和方法。通过继承，我们可以实现代码的复用，避免重复编写相同的代码。
+
+### 3.1 为什么要有继承
+
+在开发过程中，我们经常会遇到这样的情况：多个类具有相同的属性和方法。比如，我们有一个 `Animal` 类，它有 `name` 和 `age` 属性，还有 `eat()` 方法。现在我们需要创建 `Dog` 和 `Cat` 类，它们也有 `name` 和 `age` 属性，也有 `eat()` 方法。
+
+如果没有继承，我们就需要在每个类中重复编写相同的代码，这会导致：
+- 代码冗余，维护困难
+- 如果父类的逻辑发生变化，需要修改所有子类
+- 违反了 DRY（Don't Repeat Yourself）原则
+
+### 3.2 如何实现继承
+
+在 Java 中，使用 `extends` 关键字来实现继承：
+
+```java lineNumbers
+class 子类名 extends 父类名 {
+    // 子类特有的属性和方法
+}
+```
+
+### 3.3 继承的基本使用
+
+<Steps>
+<Step>
+**定义父类 Animal：**
+
+```java lineNumbers
+public class Animal {
+    protected String name;
+    protected int age;
+    
+    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    public void eat() {
+        System.out.println(name + "正在吃东西");
+    }
+    
+    public void sleep() {
+        System.out.println(name + "正在睡觉");
+    }
+}
+```
+</Step>
+
+<Step>
+**定义子类 Dog：**
+
+```java lineNumbers
+public class Dog extends Animal {
+    private String breed; // 狗的品种
+    
+    public Dog(String name, int age, String breed) {
+        super(name, age); // 调用父类构造函数
+        this.breed = breed;
+    }
+    
+    public void bark() {
+        System.out.println(name + "汪汪叫");
+    }
+    
+    // 重写父类方法
+    @Override
+    public void eat() {
+        System.out.println(name + "正在吃狗粮");
+    }
+}
+```
+</Step>
+
+<Step>
+**定义子类 Cat：**
+
+```java lineNumbers
+public class Cat extends Animal {
+    private String color; // 猫的颜色
+    
+    public Cat(String name, int age, String color) {
+        super(name, age); // 调用父类构造函数
+        this.color = color;
+    }
+    
+    public void meow() {
+        System.out.println(name + "喵喵叫");
+    }
+    
+    // 重写父类方法
+    @Override
+    public void eat() {
+        System.out.println(name + "正在吃猫粮");
+    }
+}
+```
+</Step>
+
+<Step>
+**使用继承：**
+
+```java lineNumbers
+public class AnimalTest {
+    public static void main(String[] args) {
+        Dog dog = new Dog("旺财", 3, "金毛");
+        Cat cat = new Cat("咪咪", 2, "橘色");
+        
+        // 使用继承来的方法
+        dog.eat();    // 输出：旺财正在吃狗粮
+        dog.sleep();  // 输出：旺财正在睡觉
+        dog.bark();   // 输出：旺财汪汪叫
+        
+        cat.eat();    // 输出：咪咪正在吃猫粮
+        cat.sleep();  // 输出：咪咪正在睡觉
+        cat.meow();   // 输出：咪咪喵喵叫
+    }
+}
+```
+</Step>
+</Steps>
+
+### 3.4 继承的特点
+
+1. **子类拥有父类的所有非私有属性和方法**
+2. **子类可以添加自己特有的属性和方法**
+3. **子类可以重写（Override）父类的方法**
+4. **Java 只支持单继承**（一个类只能继承一个父类）
+5. **使用 `super` 关键字可以调用父类的构造方法和方法**
+
+
+
 ## 4. 面向对象特性-多态
 
-## 5. 补充-注解
+多态（ `Polymorphism` ）是面向对象编程的另一个重要特性，它允许同一个接口使用不同的实例而执行不同的操作。简单来说，就是"一个接口，多种实现"。
+
+### 4.1 为什么要有多态
+
+多态让我们可以编写更加灵活和可扩展的代码。比如，我们有一个 `Animal` 类，它有多个子类 `Dog`、`Cat`、`Bird` 等。如果我们要创建一个动物园管理系统，需要让所有动物都执行"表演"这个动作，但每种动物的表演方式都不同。
+
+没有多态的话，我们需要为每种动物类型写不同的处理逻辑，代码会变得非常复杂。有了多态，我们可以用统一的方式来处理不同类型的对象。
+
+### 4.2 如何实现多态
+
+多态主要通过以下方式实现：
+1. **方法重写（Override）**：子类重写父类的方法
+2. **向上转型**：将子类对象赋值给父类引用
+3. **动态绑定**：在运行时根据对象的实际类型调用相应的方法
+
+### 4.3 多态的基本使用
+
+<Steps>
+<Step>
+**定义父类 Animal：**
+
+```java lineNumbers
+public class Animal {
+    protected String name;
+    
+    public Animal(String name) {
+        this.name = name;
+    }
+    
+    public void makeSound() {
+        System.out.println("动物发出声音");
+    }
+    
+    public void move() {
+        System.out.println("动物在移动");
+    }
+}
+```
+</Step>
+
+<Step>
+**定义子类并重写方法：**
+
+```java lineNumbers
+public class Dog extends Animal {
+    public Dog(String name) {
+        super(name);
+    }
+    
+    @Override
+    public void makeSound() {
+        System.out.println(name + "汪汪叫");
+    }
+    
+    @Override
+    public void move() {
+        System.out.println(name + "用四条腿跑步");
+    }
+}
+
+public class Cat extends Animal {
+    public Cat(String name) {
+        super(name);
+    }
+    
+    @Override
+    public void makeSound() {
+        System.out.println(name + "喵喵叫");
+    }
+    
+    @Override
+    public void move() {
+        System.out.println(name + "优雅地走路");
+    }
+}
+
+public class Bird extends Animal {
+    public Bird(String name) {
+        super(name);
+    }
+    
+    @Override
+    public void makeSound() {
+        System.out.println(name + "叽叽喳喳");
+    }
+    
+    @Override
+    public void move() {
+        System.out.println(name + "在天空中飞翔");
+    }
+}
+```
+</Step>
+
+<Step>
+**使用多态：**
+
+```java lineNumbers
+public class Zoo {
+    public static void main(String[] args) {
+        // 创建不同类型的动物
+        Animal[] animals = {
+            new Dog("旺财"),
+            new Cat("咪咪"),
+            new Bird("小黄")
+        };
+        
+        // 使用多态：同一个方法调用，不同的行为
+        for (Animal animal : animals) {
+            animal.makeSound(); // 根据实际对象类型调用不同的方法
+            animal.move();
+            System.out.println("---");
+        }
+    }
+}
+```
+
+**输出结果：**
+```
+旺财汪汪叫
+旺财用四条腿跑步
+---
+咪咪喵喵叫
+咪咪优雅地走路
+---
+小黄叽叽喳喳
+小黄在天空中飞翔
+---
+```
+</Step>
+</Steps>
+
+### 4.4 多态的优势
+
+1. **代码复用**：可以编写通用的代码来处理不同类型的对象
+2. **易于扩展**：添加新的子类不需要修改现有代码
+3. **提高可维护性**：统一的接口使代码更容易理解和维护
+4. **实现开闭原则**：对扩展开放，对修改关闭
