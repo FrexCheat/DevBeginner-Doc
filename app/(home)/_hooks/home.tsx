@@ -20,16 +20,11 @@ export default function HomeHook({ children }: { children: React.ReactNode }) {
 
   useGSAP(() => {
     const timeLine = gsap.timeline();
-    timeLine.to(".path-anim", {
-      opacity: 0,
-      duration: 0.5,
-      ease: "power2.out",
-      delay: 1.5
-    }).to(".hero-background", {
+    timeLine.to(".hero-background", {
       opacity: 0.8,
       duration: 2,
       ease: "power2.out"
-    }, "-=0.5").to(".hero-logo", {
+    }, "-=0.1").to(".hero-logo", {
       scale: 1,
       duration: 2,
       ease: "power2.out"
@@ -38,7 +33,6 @@ export default function HomeHook({ children }: { children: React.ReactNode }) {
       opacity: 1,
       duration: 0.5,
       ease: "power2.out",
-      stagger: 0.2
     }, "-=1").to("#nd-nav", {
       transform: "translateY(0)",
       duration: 1,

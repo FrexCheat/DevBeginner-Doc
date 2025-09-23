@@ -6,7 +6,6 @@ export function baseOptions(): BaseLayoutProps {
     nav: {
       title: (
         <>
-          <Image src="/logo.svg" alt="Logo" width={30} height={30} />
           DevBeginner Doc
         </>
       ),
