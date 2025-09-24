@@ -12,8 +12,8 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(gsap@3.13.0)(react@19.1.1)
       '@orama/stopwords':
-        specifier: ^3.1.13
-        version: 3.1.13
+        specifier: ^3.1.14
+        version: 3.1.14
       '@orama/tokenizers':
         specifier: ^3.1.14
         version: 3.1.14
@@ -566,8 +566,8 @@ packages:
     resolution: {integrity: sha512-Iq4RxYC7y0pA/hLgcUGpYYs5Vze4qNmJk0Qi1uIrg2bHGpm6A06nbjWcH9h4HQsddkDFFlanLj/zYBH3Sxdb4w==}
     engines: {node: '>= 20.0.0'}
 
-  '@orama/stopwords@3.1.13':
-    resolution: {integrity: sha512-+hQUIfluBJemXirxqls+HKWENnhkpsJql8owFKpuJoBJHYztnrCG0Jrshyo4EMVGmSoMTAsV6DHfTIthNnso7A==}
+  '@orama/stopwords@3.1.14':
+    resolution: {integrity: sha512-IAuf/F4wZXHm/H7H85syOgVBlTtWMQpWz/GsyEtB0AVxsY8xdY2KoESf4aLhLR2mNSbTYQOzFPQW/9ii7m2Nbg==}
     engines: {node: '>= 20.0.0'}
 
   '@orama/tokenizers@3.1.14':
@@ -3511,7 +3511,7 @@ snapshots:
 
   '@orama/orama@3.1.14': {}
 
-  '@orama/stopwords@3.1.13': {}
+  '@orama/stopwords@3.1.14': {}
 
   '@orama/tokenizers@3.1.14':
     dependencies:
