@@ -12,6 +12,9 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...components,
     ...TabsComponents,
     img: (props) => <ImageZoom {...(props as any)} />,
-    Accordion, Accordions, Step, Steps
+    Accordion,
+    Accordions,
+    Step,
+    Steps,
   };
 }

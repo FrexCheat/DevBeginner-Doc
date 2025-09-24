@@ -9,9 +9,28 @@
 
 .hero-background {
   opacity: 0;
-  background: url(/hero-mask.webp), radial-gradient(circle at right center, #4b296980, #563277, #4a378c 50%, #4066a8 70%, #32517380);
-  -webkit-mask-image: radial-gradient(ellipse 80% 40% at center center, #000 20%, #00000080 50%, #0000);
-  mask-image: radial-gradient(ellipse 80% 40% at center center, #000 20%, #00000080 50%, #0000);
+  background:
+    url(/hero-mask.webp),
+    radial-gradient(
+      circle at right center,
+      #4b296980,
+      #563277,
+      #4a378c 50%,
+      #4066a8 70%,
+      #32517380
+    );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 40% at center center,
+    #000 20%,
+    #00000080 50%,
+    #0000
+  );
+  mask-image: radial-gradient(
+    ellipse 80% 40% at center center,
+    #000 20%,
+    #00000080 50%,
+    #0000
+  );
 }
 
 .hero-logo {
@@ -42,11 +61,17 @@
 }
 
 .hero-button:hover {
-  box-shadow: 0 0 10px var(--base-color), 0 0 25px var(--border-color), 0 0 50px var(--base-color);
+  box-shadow:
+    0 0 10px var(--base-color),
+    0 0 25px var(--border-color),
+    0 0 50px var(--base-color);
   transition: 0.1s;
 }
 
 .hero-button:active {
-  box-shadow: 0 0 8px var(--base-color), 0 0 8px var(--border-color), 0 0 8px var(--base-color);
+  box-shadow:
+    0 0 8px var(--base-color),
+    0 0 8px var(--border-color),
+    0 0 8px var(--base-color);
   transition: 0.2s;
 }

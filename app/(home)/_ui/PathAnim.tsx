@@ -1,13 +1,13 @@
-"use client";
+'use client';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useRef, useState } from 'react';
 const PathAnim = ({
   index = 0,
-  path = "",
+  path = '',
   duration = 2,
   glowLength = 50,
-  glowColor = "#2EB9DF"
+  glowColor = '#2EB9DF',
 }: {
   index?: number;
   path?: string;
@@ -19,9 +19,14 @@ const PathAnim = ({
   children?: React.ReactNode;
 }) => {
   const pathRef = useRef<SVGPathElement>(null);
-  const [gradientCoords, setGradientCoords] = useState({ x1: 0, y1: 0, x2: 0, y2: 0 });
-  const glowId = `gradientGlow-${index}-${glowColor.replace("#", "")}`;
-  
+  const [gradientCoords, setGradientCoords] = useState({
+    x1: 0,
+    y1: 0,
+    x2: 0,
+    y2: 0,
+  });
+  const glowId = `gradientGlow-${index}-${glowColor.replace('#', '')}`;
+
   useGSAP(() => {
     if (!pathRef.current) return;
     const pathElement = pathRef.current;
@@ -47,19 +52,27 @@ const PathAnim = ({
           x1: startPoint.x,
           y1: startPoint.y,
           x2: endPoint.x,
-          y2: endPoint.y
+          y2: endPoint.y,
         });
-      }
+      },
     });
-    tl.to(pathAnimation, {
-      glowStretch: 1,
-      duration: 0.5,
-      ease: 'power2.out'
-    }, "<").to(pathAnimation, {
-      glowStretch: 3,
-      duration: 0.3,
-      ease: 'power2.in'
-    }, ">0.3");
+    tl.to(
+      pathAnimation,
+      {
+        glowStretch: 1,
+        duration: 0.5,
+        ease: 'power2.out',
+      },
+      '<'
+    ).to(
+      pathAnimation,
+      {
+        glowStretch: 3,
+        duration: 0.3,
+        ease: 'power2.in',
+      },
+      '>0.3'
+    );
   }, [duration]);
 
   return (
@@ -71,26 +84,26 @@ const PathAnim = ({
           y1={gradientCoords.y1}
           x2={gradientCoords.x2}
           y2={gradientCoords.y2}
-          gradientUnits="userSpaceOnUse"
+          gradientUnits='userSpaceOnUse'
         >
-          <stop stopColor={glowColor} stopOpacity="0" />
-          <stop offset="1" stopColor={glowColor} stopOpacity="1" />
-          <stop offset="0.05" stopColor={glowColor} stopOpacity="0" />
+          <stop stopColor={glowColor} stopOpacity='0' />
+          <stop offset='1' stopColor={glowColor} stopOpacity='1' />
+          <stop offset='0.05' stopColor={glowColor} stopOpacity='0' />
         </linearGradient>
       </defs>
       <path
         ref={pathRef}
         d={path}
-        stroke="#787878"
-        strokeOpacity="0.3"
-        fill="none"
+        stroke='#787878'
+        strokeOpacity='0.3'
+        fill='none'
       />
       <path
         d={path}
         stroke={`url(#${glowId})`}
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
+        strokeWidth='2'
+        strokeLinecap='round'
+        fill='none'
       />
     </>
   );

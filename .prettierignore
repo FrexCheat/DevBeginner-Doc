@@ -19,5 +19,9 @@ coverage
 .env*.local
 next-env.d.ts
 
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
+
 CLAUDE.md
 README.md
