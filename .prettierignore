@@ -1,0 +1,23 @@
+# Ignore artifacts:
+build
+coverage
+
+**/node_modules/
+
+**/out/
+**/dist/
+**/build/
+
+**/.git/
+**/.next/
+
+**/.source/
+**/.contentlayer/
+**/.content-collections/
+
+.vercel
+.env*.local
+next-env.d.ts
+
+CLAUDE.md
+README.md
