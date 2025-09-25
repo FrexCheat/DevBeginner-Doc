@@ -20,7 +20,7 @@ export default function HomeHook({ children }: { children: React.ReactNode }) {
         setTheme(theme);
       }
     };
-  }, [setTheme, theme]);
+  });
 
   useGSAP(() => {
     const timeLine = gsap.timeline();
