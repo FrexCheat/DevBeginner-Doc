@@ -1,4 +1,4 @@
-import PathAnim from '../_ui/PathAnim';
+import PathAnim from './_ui/PathAnim';
 
 const pathArray = [
   'M -15 80 L 295 80',
