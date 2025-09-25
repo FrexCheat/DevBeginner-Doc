@@ -7,16 +7,20 @@ import { useGSAP } from '@gsap/react';
 
 export default function HomeHook({ children }: { children: React.ReactNode }) {
   const { setTheme, theme } = useTheme();
-  const prevTheme = theme;
 
   useEffect(() => {
-    setTheme('dark');
+    document.documentElement.classList.remove('light');
+    document.documentElement.classList.add('dark');
+    document.documentElement.style.setProperty('color-scheme', 'dark');
     return () => {
-      if (prevTheme) {
-        setTheme(prevTheme);
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        document.documentElement.style.setProperty('color-scheme', 'light');
+        setTheme(theme);
       }
     };
-  });
+  }, [setTheme, theme]);
 
   useGSAP(() => {
     const timeLine = gsap.timeline();
