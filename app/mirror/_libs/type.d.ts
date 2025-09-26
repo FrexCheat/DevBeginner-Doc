@@ -1,0 +1,33 @@
+interface DownloadableFile {
+  id: string;
+  name: string;
+  local_url: string;
+  size: string;
+  version: string;
+  last_updated: string;
+}
+
+interface CaptchaResponse {
+  id: string;
+  master_img: string;
+  thumb_img: string;
+  expire_time: number;
+}
+
+interface VerifyResponse {
+  success: boolean;
+  message: string;
+}
+
+interface DownloadResponse {
+  success: boolean;
+  message: string;
+  download_url?: string;
+}
+
+export type {
+  DownloadableFile,
+  CaptchaResponse,
+  VerifyResponse,
+  DownloadResponse,
+};

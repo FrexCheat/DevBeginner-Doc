@@ -1,0 +1,72 @@
+:root {
+  --btn-base-color: #abcafc;
+  --btn-border-color: #1a58a4;
+}
+
+.box {
+  width: 100%;
+  height: 170px;
+  position: relative;
+  border-radius: 12px;
+  border: 1px solid var(--color-fd-border);
+  background-color: var(--color-fd-card);
+}
+
+.box::before {
+  content: '';
+  z-index: -1;
+  inset: -2px;
+  display: block;
+  position: absolute;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: radial-gradient(
+    200px circle at var(--x) var(--y),
+    rgba(0, 179, 255, 0.819) 0,
+    transparent 100%
+  );
+  border-radius: 12px;
+  will-change: background;
+  pointer-events: none;
+}
+
+.mirror-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.5em 1.8em;
+  outline: none;
+  color: white;
+  background-color: #4b6596;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 15px;
+  font-weight: bold;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.1s;
+  transform: translateY(20px);
+}
+
+.light .mirror-btn {
+  background-color: white;
+  color: #4b6596;
+}
+
+.mirror-btn:hover {
+  box-shadow:
+    0 0 5px var(--btn-base-color),
+    0 0 12px var(--btn-border-color),
+    0 0 25px var(--btn-base-color);
+  transition: 0.1s;
+}
+
+.mirror-btn:active {
+  box-shadow:
+    0 0 8px var(--btn-base-color),
+    0 0 8px var(--btn-border-color),
+    0 0 8px var(--btn-base-color);
+  transition: 0.2s;
+}
