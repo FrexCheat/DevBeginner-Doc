@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import { Toaster } from 'react-hot-toast';
 import GoCaptcha from 'go-captcha-react';
 
@@ -15,7 +14,6 @@ export default function MirrorPage() {
     files,
     loading,
     error,
-    downloadingId,
     captchaData,
     isPopperOpen,
     setCaptchaData,
@@ -40,7 +38,9 @@ export default function MirrorPage() {
     refresh: refreshCaptcha,
     close: handleCaptchaClose,
     confirm: (dots: Array<{ x: number; y: number }>) => {
-      captchaData && submitCaptcha(downloadingId, captchaData.id, dots);
+      if (captchaData) {
+        submitCaptcha(captchaData.id, dots);
+      }
     },
   };
 

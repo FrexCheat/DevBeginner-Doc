@@ -74,23 +74,21 @@ export function useMirrorDownload() {
 
   const submitCaptcha = useCallback(
     async (
-      fileId: string | null,
       captchaId: string,
       dots: Array<{ x: number; y: number }>
     ) => {
-      if (!fileId) {
+      if (!currentFileId) {
         toast.error('文件ID不存在，请重新尝试下载');
         return;
       }
       try {
-        setDownloadingId(currentFileId);
         const verifyResult = await verifyCaptcha(captchaId, dots);
         if (!verifyResult.success) {
           toast.error('验证码验证失败');
           return;
         }
         // 验证成功，获取下载链接
-        const downloadResult = await getDownloadLink(fileId, captchaId);
+        const downloadResult = await getDownloadLink(currentFileId, captchaId);
         if (!downloadResult.success || !downloadResult.download_url) {
           toast.error('获取下载链接失败');
           return;
@@ -116,7 +114,7 @@ export function useMirrorDownload() {
         setIsPopperOpen(false);
       }
     },
-    [currentFileId, refreshCaptcha]
+    [currentFileId]
   );
 
   return {
