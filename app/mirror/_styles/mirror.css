@@ -3,6 +3,26 @@
   --btn-border-color: #1a58a4;
 }
 
+.dark {
+  --go-captcha-theme-text-color: #8f94a7 !important;
+  --go-captcha-theme-bg-color: #18181a !important;
+  --go-captcha-theme-btn-color: #ffffff !important;
+  --go-captcha-theme-btn-bg-color: #4e87ff !important;
+  --go-captcha-theme-btn-border-color: #4e87ff !important;
+  --go-captcha-theme-active-color: #3e7cff !important;
+  --go-captcha-theme-border-color: #3c3f44 !important;
+  --go-captcha-theme-icon-color: #696d7b !important;
+  --go-captcha-theme-drag-bar-color: #3c3f44 !important;
+  --go-captcha-theme-drag-bg-color: #3e7cff !important;
+  --go-captcha-theme-drag-icon-color: #ffffff !important;
+  --go-captcha-theme-round-color: #3c3f44 !important;
+  --go-captcha-theme-loading-icon-color: #3e7cff !important;
+  --go-captcha-theme-body-bg-color: #34383e !important;
+  --go-captcha-theme-dot-color: #cedffe !important;
+  --go-captcha-theme-dot-bg-color: #3e7cff !important;
+  --go-captcha-theme-dot-border-color: #f7f9fb !important;
+}
+
 .box {
   width: 100%;
   height: 170px;
@@ -20,11 +40,7 @@
   position: absolute;
   width: calc(100% + 4px);
   height: calc(100% + 4px);
-  background: radial-gradient(
-    200px circle at var(--x) var(--y),
-    rgba(0, 179, 255, 0.819) 0,
-    transparent 100%
-  );
+  background: radial-gradient(200px circle at var(--x) var(--y), rgba(0, 179, 255, 0.819) 0, transparent 100%);
   border-radius: 12px;
   will-change: background;
   pointer-events: none;

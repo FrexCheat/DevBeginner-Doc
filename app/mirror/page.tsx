@@ -16,22 +16,14 @@ export default function MirrorPage() {
     error,
     captchaData,
     isPopperOpen,
-    setCaptchaData,
-    setDownloadingId,
-    setCurrentFileId,
-    setClickedId,
-    setIsPopperOpen,
     handleDownloadClick,
     refreshCaptcha,
     submitCaptcha,
+    resetDownloadState,
   } = useMirrorDownload();
 
   const handleCaptchaClose = () => {
-    setIsPopperOpen(false);
-    setCaptchaData(null);
-    setDownloadingId(null);
-    setCurrentFileId(null);
-    setClickedId(null);
+    resetDownloadState();
   };
 
   const captchaEvents = {
@@ -48,22 +40,12 @@ export default function MirrorPage() {
     <main className='flex flex-1 flex-col items-center'>
       <Toaster />
       <h1 className='mt-8 mb-8 text-2xl font-bold'>软件仓库</h1>
-      {loading || error ? (
-        <Loading />
-      ) : (
-        <FilesList files={files} onDownload={handleDownloadClick} />
-      )}
-      <Popper
-        isOpen={isPopperOpen}
-        onClose={() => setIsPopperOpen(false)}
-        title='确认您是否是人类'
-      >
+      {loading || error ? <Loading /> : <FilesList files={files} onDownload={handleDownloadClick} />}
+      <Popper isOpen={isPopperOpen} onClose={() => resetDownloadState()} title='确认您是否是人类'>
         {captchaData && (
           <GoCaptcha.Click
-            data={{
-              image: captchaData.master_img,
-              thumb: captchaData.thumb_img,
-            }}
+            data={{ image: captchaData.master_img, thumb: captchaData.thumb_img }}
+            config={{ width: 350 }}
             events={captchaEvents}
           />
         )}

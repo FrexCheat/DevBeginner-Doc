@@ -25,9 +25,4 @@ interface DownloadResponse {
   download_url?: string;
 }
 
-export type {
-  DownloadableFile,
-  CaptchaResponse,
-  VerifyResponse,
-  DownloadResponse,
-};
+export type { DownloadableFile, CaptchaResponse, VerifyResponse, DownloadResponse };

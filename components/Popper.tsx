@@ -69,7 +69,7 @@ export default function Popper({
     >
       <div
         ref={contentRef}
-        className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl transition-all max-h-[90vh] overflow-auto ${className}`}
+        className={`bg-white dark:bg-[rgb(20,20,20)] rounded-lg shadow-xl transition-all max-h-[90vh] overflow-auto ${className}`}
         style={{ width, height }}
         onClick={handleContentClick}
       >

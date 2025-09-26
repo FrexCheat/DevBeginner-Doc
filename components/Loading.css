@@ -1,21 +1,23 @@
-/* From Uiverse.io by Subaashbala */ 
 .loader {
   font-size: 2em;
   font-weight: 900;
   height: 100%;
 }
+
 .loader > * {
-  color: black;
+  color: var(--color-fd-secondary-foreground);
 }
+
 .loader span {
   display: inline-flex;
 }
+
 .loader span:nth-child(2) {
   letter-spacing: -1em;
   overflow: hidden;
-  animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
-    alternate;
+  animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite alternate;
 }
+
 @keyframes reveal {
   0%,
   100% {

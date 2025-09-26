@@ -1,9 +1,4 @@
-import type {
-  DownloadableFile,
-  CaptchaResponse,
-  VerifyResponse,
-  DownloadResponse,
-} from './type';
+import type { DownloadableFile, CaptchaResponse, VerifyResponse, DownloadResponse } from './type';
 
 async function getDownloadableFiles(): Promise<DownloadableFile[]> {
   const response = await fetch('/mirror/api/files');
@@ -23,10 +18,7 @@ async function getCaptcha(): Promise<CaptchaResponse> {
   return data;
 }
 
-async function verifyCaptcha(
-  captchaId: string,
-  dots: Array<{ x: number; y: number }>
-): Promise<VerifyResponse> {
+async function verifyCaptcha(captchaId: string, dots: Array<{ x: number; y: number }>): Promise<VerifyResponse> {
   const response = await fetch('/mirror/api/captcha/verify', {
     method: 'POST',
     headers: {
@@ -41,10 +33,7 @@ async function verifyCaptcha(
   return data;
 }
 
-async function getDownloadLink(
-  fileId: string,
-  captchaId: string
-): Promise<DownloadResponse> {
+async function getDownloadLink(fileId: string, captchaId: string): Promise<DownloadResponse> {
   const response = await fetch('/mirror/api/download/request', {
     method: 'POST',
     headers: {

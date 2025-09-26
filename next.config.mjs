@@ -3,10 +3,10 @@ import { createMDX } from 'fumadocs-mdx/next';
 const withMDX = createMDX();
 const rewrites = async () => {
   return [
-    // {
-    //   source: '/mirror/api/:slug*',
-    //   destination: 'http://xxxx/api/:slug*',
-    // },
+    {
+      source: '/mirror/api/:slug*',
+      destination: process.env.PROXY_DOMAIN + '/api/:slug*',
+    },
   ];
 };
 
