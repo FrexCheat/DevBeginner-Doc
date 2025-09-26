@@ -1,7 +1,11 @@
 import { createMDX } from 'fumadocs-mdx/next';
 
 const withMDX = createMDX();
+
 const rewrites = async () => {
+  if (process.env.NODE_ENV === 'production') {
+    return [];
+  }
   return [
     {
       source: '/mirror/api/:slug*',

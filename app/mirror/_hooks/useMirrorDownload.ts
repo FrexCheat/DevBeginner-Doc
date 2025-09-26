@@ -2,7 +2,7 @@ import { useReducer, useCallback, useEffect } from 'react';
 import { useAsync, useDebounce } from 'react-use';
 import toast from 'react-hot-toast';
 
-import type { CaptchaResponse, DownloadableFile } from '../_libs/type';
+import type { CaptchaResponse } from '../_libs/type';
 import { getDownloadableFiles, getCaptcha, verifyCaptcha, getDownloadLink } from '../_libs/api';
 
 type State = {
