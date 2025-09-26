@@ -1,11 +1,10 @@
 'use client';
-
 import gsap from 'gsap';
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useGSAP } from '@gsap/react';
 
-export default function HomeHook({ children }: { children: React.ReactNode }) {
+export function useHomeHook() {
   const { setTheme, theme } = useTheme();
 
   useEffect(() => {
@@ -63,6 +62,4 @@ export default function HomeHook({ children }: { children: React.ReactNode }) {
         '<'
       );
   });
-
-  return <>{children}</>;
 }

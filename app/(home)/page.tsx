@@ -1,12 +1,15 @@
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaGithub } from 'react-icons/fa';
 
 import './_styles/home.css';
+import { GITHUB_URL } from '@/lib/constants';
+import { useHomeHook } from './_hooks/useHomeHook';
 import { HeroLinear } from './_components/HeroLinear';
 
 export default function HomePage() {
-  const githubUrl = 'https://github.com/FrexCheat/DevBeginner-Doc';
+  useHomeHook();
   return (
     <main className='absolute inset-0 overflow-hidden flex flex-col justify-center items-center'>
       <div className='hero-background absolute inset-0 -z-1' />
@@ -27,7 +30,7 @@ export default function HomePage() {
         <Link href='/docs'>
           <button className='hero-button'>开 始 阅 读</button>
         </Link>
-        <Link href={githubUrl} target='_blank' rel='noopener noreferrer'>
+        <Link href={GITHUB_URL} target='_blank' rel='noopener noreferrer'>
           <button className='hero-button'>
             <FaGithub size='1.3em' />
             GitHub
