@@ -16,8 +16,13 @@ const rewrites = async () => {
 
 /** @type {import('next').NextConfig} */
 const config = {
+  output: 'export',
   reactStrictMode: true,
   rewrites,
+  images: {
+    unoptimized: true,
+    dangerouslyAllowSVG: true,
+  },
 };
 
 export default withMDX(config);

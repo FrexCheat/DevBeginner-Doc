@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@orama/orama": "^3.1.14",
     "@orama/stopwords": "^3.1.14",
     "@orama/tokenizers": "^3.1.14",
     "fumadocs-core": "15.8.1",
