@@ -44,7 +44,7 @@ export default function MirrorPage() {
       <Popper isOpen={isPopperOpen} onClose={() => resetDownloadState()} title='确认您是否是人类'>
         {captchaData && (
           <GoCaptcha.Click
-            data={{ image: captchaData.master_img, thumb: captchaData.thumb_img }}
+            data={{ image: captchaData.image, thumb: captchaData.thumb }}
             config={{ width: 350 }}
             events={captchaEvents}
           />

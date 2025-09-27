@@ -9,8 +9,8 @@ interface DownloadableFile {
 
 interface CaptchaResponse {
   id: string;
-  master_img: string;
-  thumb_img: string;
+  image: string;
+  thumb: string;
   expire_time: number;
 }
 

@@ -3,13 +3,10 @@ import { createMDX } from 'fumadocs-mdx/next';
 const withMDX = createMDX();
 
 const rewrites = async () => {
-  if (process.env.NODE_ENV === 'production') {
-    return [];
-  }
   return [
     {
       source: '/mirror/api/:slug*',
-      destination: process.env.PROXY_DOMAIN || '' + '/api/:slug*',
+      destination: '' || process.env.PROXY_DOMAIN + '/api/:slug*',
     },
   ];
 };
@@ -18,11 +15,14 @@ const rewrites = async () => {
 const config = {
   output: 'export',
   reactStrictMode: true,
-  rewrites,
   images: {
     unoptimized: true,
     dangerouslyAllowSVG: true,
   },
 };
+if (process.env.NODE_ENV === 'development') {
+  config.output = undefined;
+  config.rewrites = rewrites;
+}
 
 export default withMDX(config);
