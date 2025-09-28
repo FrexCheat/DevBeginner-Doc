@@ -11,14 +11,14 @@ import { HeroLinear } from './_components/HeroLinear';
 export default function HomePage() {
   useHomeHook();
   return (
-    <main className='absolute inset-0 overflow-hidden flex flex-col justify-center items-center'>
+    <main className='absolute inset-0 flex flex-col items-center justify-center overflow-hidden'>
       <div className='hero-background absolute inset-0 -z-1' />
       {/* Path Animation */}
-      <div className='relative w-[1640px] h-[400px] mt-5 flex flex-row justify-center items-center'>
+      <div className='relative mt-5 flex h-[400px] w-[1640px] flex-row items-center justify-center'>
         <HeroLinear />
         <Image
-          className='hero-logo sm:size-76 md:size-80 lg:size-96 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
-          src='/hero-logo.svg'
+          className='hero-logo absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:size-76 md:size-80 lg:size-96'
+          src='/assets/hero-logo.svg'
           priority={true}
           alt='Hero Logo'
           width={304}
@@ -26,7 +26,7 @@ export default function HomePage() {
         />
       </div>
       {/* Button Group */}
-      <div className='flex flex-row flex-wrap gap-3 justify-between items-center'>
+      <div className='flex flex-row flex-wrap items-center justify-between gap-3'>
         <Link href='/docs'>
           <button className='hero-button'>开 始 阅 读</button>
         </Link>

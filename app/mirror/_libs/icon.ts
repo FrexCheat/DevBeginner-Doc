@@ -1,5 +1,5 @@
 const icons = {
-  'IntellJ IDEA': '/mirror/idea.svg',
+  'IntellJ IDEA': '/assets/mirror/idea.svg',
 };
 
 export default icons;

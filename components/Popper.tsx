@@ -64,19 +64,19 @@ export default function Popper({
   return createPortal(
     <div
       ref={overlayRef}
-      className='fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50'
+      className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm'
       onClick={handleOverlayClick}
     >
       <div
         ref={contentRef}
-        className={`bg-white dark:bg-[rgb(20,20,20)] rounded-lg shadow-xl transition-all max-h-[90vh] overflow-auto ${className}`}
+        className={`max-h-[90vh] overflow-auto rounded-lg bg-white shadow-xl transition-all dark:bg-[rgb(20,20,20)] ${className}`}
         style={{ width, height }}
         onClick={handleContentClick}
       >
-        <div className='flex justify-between items-center p-4 border-b dark:border-gray-700'>
+        <div className='flex items-center justify-between border-b p-4 dark:border-gray-700'>
           <h3 className='text-lg font-medium'>{title}</h3>
           <button
-            className='p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors'
+            className='rounded-full p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700'
             onClick={onClose}
             aria-label='关闭'
           >
@@ -84,7 +84,7 @@ export default function Popper({
           </button>
         </div>
 
-        <div className='flex justify-center items-center p-6'>{children}</div>
+        <div className='flex items-center justify-center p-6'>{children}</div>
       </div>
     </div>,
     document.body

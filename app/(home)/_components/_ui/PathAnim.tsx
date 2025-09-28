@@ -91,20 +91,8 @@ const PathAnim = ({
           <stop offset='0.05' stopColor={glowColor} stopOpacity='0' />
         </linearGradient>
       </defs>
-      <path
-        ref={pathRef}
-        d={path}
-        stroke='#787878'
-        strokeOpacity='0.3'
-        fill='none'
-      />
-      <path
-        d={path}
-        stroke={`url(#${glowId})`}
-        strokeWidth='2'
-        strokeLinecap='round'
-        fill='none'
-      />
+      <path ref={pathRef} d={path} stroke='#787878' strokeOpacity='0.3' fill='none' />
+      <path d={path} stroke={`url(#${glowId})`} strokeWidth='2' strokeLinecap='round' fill='none' />
     </>
   );
 };

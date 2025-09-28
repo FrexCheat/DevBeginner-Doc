@@ -22,10 +22,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ children, className = '' }) => {
   });
 
   return (
-    <div
-      ref={boxRef}
-      className={`box p-2 flex flex-col gap-1 items-center ${className}`}
-    >
+    <div ref={boxRef} className={`box flex flex-col items-center gap-1 p-2 ${className}`}>
       {children}
     </div>
   );

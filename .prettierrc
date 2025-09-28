@@ -6,5 +6,6 @@
   "jsxSingleQuote": true,
   "endOfLine": "lf",
   "useTabs": false,
-  "printWidth": 120
+  "printWidth": 120,
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

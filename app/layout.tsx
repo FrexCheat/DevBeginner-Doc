@@ -33,7 +33,7 @@ const inter = Inter({
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <html lang='cn' className={inter.className} suppressHydrationWarning>
-      <body className='flex flex-col min-h-screen'>
+      <body className='flex min-h-screen flex-col'>
         <RootProvider i18n={provider('cn')} search={{ SearchDialog }}>
           {children}
         </RootProvider>

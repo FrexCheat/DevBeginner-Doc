@@ -12,10 +12,10 @@ interface FilesListProps {
 
 const FilesList: React.FC<FilesListProps> = ({ files, onDownload }) => {
   return (
-    <div className='w-full grid grid-cols-[repeat(auto-fill,330px)] gap-4 justify-center'>
+    <div className='grid w-full grid-cols-[repeat(auto-fill,330px)] justify-center gap-4'>
       {files.map((file) => (
         <ItemCard key={file.id}>
-          <div className='flex flex-row gap-8 h-20 items-center'>
+          <div className='flex h-20 flex-row items-center gap-8'>
             {icons[file.name as keyof typeof icons] ? (
               <Image src={icons[file.name as keyof typeof icons]} alt={file.name} width={64} height={64} />
             ) : (

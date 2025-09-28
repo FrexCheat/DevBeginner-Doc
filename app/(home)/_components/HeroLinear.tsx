@@ -26,13 +26,7 @@ const pathConfigs = [
 
 export const HeroLinear = () => {
   return (
-    <svg
-      className='-z-1 scale-200'
-      width='710'
-      height='200'
-      viewBox='0 0 710 200'
-      xmlns='http://www.w3.org/2000/svg'
-    >
+    <svg className='-z-1 scale-200' width='710' height='200' viewBox='0 0 710 200' xmlns='http://www.w3.org/2000/svg'>
       {pathConfigs.map((config, index) => (
         <PathAnim
           key={`linear-anim-${index}`}
@@ -43,24 +37,8 @@ export const HeroLinear = () => {
           glowLength={config.glowLength}
         />
       ))}
-      <circle
-        cx={15}
-        cy={186}
-        fill='none'
-        stroke='#787878'
-        strokeWidth={2}
-        strokeOpacity='0.3'
-        r={5}
-      />
-      <circle
-        cx={700}
-        cy={106}
-        fill='none'
-        stroke='#787878'
-        strokeWidth={2}
-        strokeOpacity='0.3'
-        r={5}
-      />
+      <circle cx={15} cy={186} fill='none' stroke='#787878' strokeWidth={2} strokeOpacity='0.3' r={5} />
+      <circle cx={700} cy={106} fill='none' stroke='#787878' strokeWidth={2} strokeOpacity='0.3' r={5} />
     </svg>
   );
 };
