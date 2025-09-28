@@ -2,8 +2,8 @@
 import { Toaster } from 'react-hot-toast';
 import GoCaptcha from 'go-captcha-react';
 
-import Loading from '@/components/Loading';
-import Popper from '@/components/Popper';
+import Loading from '@/components/HomePage/Loading';
+import Popper from '@/components/HomePage/Popper';
 
 import './_styles/mirror.css';
 import FilesList from './_components/FilesList';
