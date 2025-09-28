@@ -1,15 +1,13 @@
 import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
-import {
-  defineConfig,
-  defineDocs,
-  frontmatterSchema,
-  metaSchema,
-} from 'fumadocs-mdx/config';
+import { z } from 'zod';
+import { defineConfig, defineDocs, frontmatterSchema, metaSchema } from 'fumadocs-mdx/config';
 
 export const docs = defineDocs({
   docs: {
-    schema: frontmatterSchema,
+    schema: frontmatterSchema.extend({
+      hideTitle: z.boolean().default(false),
+    }),
   },
   meta: {
     schema: metaSchema,

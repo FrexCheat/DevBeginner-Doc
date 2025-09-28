@@ -1,10 +1,5 @@
 import { source } from '@/lib/source';
-import {
-  DocsBody,
-  DocsDescription,
-  DocsPage,
-  DocsTitle,
-} from 'fumadocs-ui/page';
+import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'fumadocs-ui/page';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
@@ -16,17 +11,16 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   if (!page) notFound();
 
   const MDXContent = page.data.body;
+  const hideTitle = page.data.hideTitle === true;
 
   return (
     <DocsPage
       toc={page.data.toc}
       full={page.data.full}
       tableOfContent={{ style: 'clerk' }}
-      lastUpdate={
-        page.data.lastModified ? new Date(page.data.lastModified) : undefined
-      }
+      lastUpdate={page.data.lastModified ? new Date(page.data.lastModified) : undefined}
     >
-      <DocsTitle>{page.data.title}</DocsTitle>
+      {!hideTitle && <DocsTitle>{page.data.title}</DocsTitle>}
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
         <MDXContent
@@ -43,9 +37,7 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-export async function generateMetadata(
-  props: PageProps<'/docs/[[...slug]]'>
-): Promise<Metadata> {
+export async function generateMetadata(props: PageProps<'/docs/[[...slug]]'>): Promise<Metadata> {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
