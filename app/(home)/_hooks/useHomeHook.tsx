@@ -52,8 +52,9 @@ export function useHomeHook() {
         },
         '-=1'
       )
-      .to(
+      .fromTo(
         '#nd-nav',
+        { transform: 'translateY(-60px)' },
         {
           transform: 'translateY(0)',
           duration: 1,

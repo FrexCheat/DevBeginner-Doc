@@ -2,11 +2,5 @@
   "root": true,
   "title": "DevBeginner Doc",
   "description": "A documentation site for programming beginners.",
-  "pages": [
-    "foreword",
-    "environment",
-    "grammar",
-    "linux",
-    "misc"
-  ]
+  "pages": ["index", "foreword", "environment", "grammar", "misc"]
 }

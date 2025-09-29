@@ -3,10 +3,6 @@
   --border-color: #1a58a4;
 }
 
-#nd-nav {
-  transform: translateY(-60px);
-}
-
 .hero-background {
   opacity: 0;
   background:
