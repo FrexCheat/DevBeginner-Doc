@@ -65,6 +65,7 @@ export function useMirrorDownload() {
   useDebounce(
     () => {
       if (clickedId) {
+        dispatch({ type: 'SET_POPPER_OPEN', payload: true });
         prepareCaptchaForDownload(clickedId);
         dispatch({ type: 'SET_CLICKED_ID', payload: null });
       }
@@ -96,7 +97,6 @@ export function useMirrorDownload() {
         dispatch({ type: 'SET_CURRENT_FILE_ID', payload: fileId });
         const captcha = await getCaptcha();
         dispatch({ type: 'SET_CAPTCHA_DATA', payload: captcha });
-        dispatch({ type: 'SET_POPPER_OPEN', payload: true });
         return captcha;
       } catch (err) {
         if (err instanceof Error) {

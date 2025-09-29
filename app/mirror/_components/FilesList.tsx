@@ -1,8 +1,8 @@
-import Image from 'next/image';
+import { createElement } from 'react';
 import { FaRegFile } from 'react-icons/fa';
 
+import icons from './icons';
 import ItemCard from './ItemCard';
-import icons from '../_libs/icon';
 import { DownloadableFile as FileData } from '../_libs/type';
 
 interface FilesListProps {
@@ -12,12 +12,12 @@ interface FilesListProps {
 
 const FilesList: React.FC<FilesListProps> = ({ files, onDownload }) => {
   return (
-    <div className='grid w-full grid-cols-[repeat(auto-fill,330px)] justify-center gap-4'>
+    <div className='grid w-[70%] grid-cols-[repeat(auto-fill,330px)] justify-center gap-4'>
       {files.map((file) => (
         <ItemCard key={file.id}>
           <div className='flex h-20 flex-row items-center gap-8'>
             {icons[file.name as keyof typeof icons] ? (
-              <Image src={icons[file.name as keyof typeof icons]} alt={file.name} width={64} height={64} />
+              createElement(icons[file.name as keyof typeof icons], { width: 64, height: 64 })
             ) : (
               <FaRegFile size={48} />
             )}
