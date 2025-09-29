@@ -6,7 +6,7 @@ const rewrites = async () => {
   return [
     {
       source: '/mirror/api/:slug*',
-      destination: 'http://undefined.domain' || process.env.PROXY_DOMAIN + '/api/:slug*',
+      destination: (process.env.PROXY_DOMAIN || 'http://undefined.domain') + '/api/:slug*',
     },
   ];
 };
