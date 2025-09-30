@@ -31,13 +31,8 @@ export default function MirrorPage() {
 
   const [currentFileList, setCurrentFileList] = useState<DownloadableFile[]>([]);
 
-  const handleCaptchaClose = () => {
-    resetDownloadState();
-  };
-
   const captchaEvents = {
     refresh: refreshCaptcha,
-    close: handleCaptchaClose,
     confirm: (dots: Array<{ x: number; y: number }>) => {
       if (captchaData) {
         submitCaptcha(captchaData.id, dots);
