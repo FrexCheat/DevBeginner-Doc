@@ -36,6 +36,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
       <head>
         <title>DevBeginner Doc</title>
         {/* <link rel='icon' href='/favicon.png' /> */}
+        <link rel='preload' as='image' href='/assets/hero-logo.svg' />
         <meta name='description' content='DevBeginner 文档' />
         <meta name='keywords' content='DevBeginner, 文档, 教程, 指南' />
         <meta name='og:title' content='DevBeginner Doc' />
