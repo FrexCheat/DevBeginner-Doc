@@ -33,6 +33,15 @@ const inter = Inter({
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
     <html lang='cn' className={inter.className} suppressHydrationWarning>
+      <head>
+        <title>DevBeginner Doc</title>
+        {/* <link rel='icon' href='/favicon.png' /> */}
+        <meta name='description' content='DevBeginner 文档' />
+        <meta name='keywords' content='DevBeginner, 文档, 教程, 指南' />
+        <meta name='og:title' content='DevBeginner Doc' />
+        <meta name='og:site_name' content='DevBeginner Doc' />
+        <meta name='og:locale' content='zh_CN' />
+      </head>
       <body className='flex min-h-screen flex-col'>
         <RootProvider i18n={provider('cn')} search={{ SearchDialog }}>
           {children}

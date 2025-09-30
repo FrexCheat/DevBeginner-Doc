@@ -3,8 +3,80 @@ title: '主页'
 hideTitle: true
 ---
 
+import { GithubInfo } from 'fumadocs-ui/components/github-info';
 import Swiper from '@/components/MainPage/Swiper';
 
 ## NEWS
 
 <Swiper />
+
+## 支持
+
+拥有 GitHub 账户的同学点一点免费的 Star ⭐️ ，让更多人看到我们吧！
+
+<GithubInfo repo='DevBeginner-Doc' owner='FrexCheat' />
+
+## 反馈
+
+如果你在使用过程中遇到任何问题，或者有任何建议和意见，欢迎通过以下方式进行反馈：
+
+- [GitHub Issues](https://github.com/FrexCheat/DevBeginner-Doc/issues)
+- [发送邮件到 frexdeveloper@gmail.com](mailto:frexdeveloper@gmail.com)
+
+## 参与编写
+
+<Callout type='warning' title='注意'>
+  在考虑为本项目贡献内容之前，请务必确定你是否具有以下条件： 
+  - 熟悉 Git 和 GitHub 的基本操作
+  - 了解基本的前端开发知识（HTML、CSS、JavaScript）
+  - 了解 Markdown 和 JSX/TSX/MDX 的基本语法
+  - 了解基本的 Node.js 和 npm/yarn/pnpm 知识
+  - 了解基本的 TypeScript 知识
+  - 了解基本的文档编写和排版知识
+  - 了解基本的开源项目协作流程
+</Callout>
+
+### 项目介绍
+
+DevBeginner-Doc 是一个使用 [Next.js](https://nextjs.org/) 和 [Fumadocs](https://fumadocs.dev/) 构建的编程入门教程，力求描述详尽、易于理解的教程内容，专门为编程初学者设计，尤其针对计算机科学或软件工程专业的大学新生，他们通常具有有限的编程经验。
+
+### Work with Claude Code
+
+🌟 DevBeginner-Doc 支持 Claude Code 协作，提示词文件：[CLAUDE.md](https://github.com/FrexCheat/DevBeginner-Doc/blob/main/CLAUDE.md)
+
+你可以在这个文件中找到一些具体的关于本项目的协作规范以及解释，包括但不限于：代码风格指南、文档内容要求、提交信息规范、其他相关的协作流程和工具使用说明
+
+### 项目结构
+
+```bash
+DevBeginner-Doc/
+├── .github/             # Github actions workflow files
+├── app/                 # Next.js application files
+├── components/          # Custom UI components which are used in pages or docs
+├── content/docs/        # Documentation content (MDX files)
+├── hooks/               # React/Next.js tsx files used for hook
+├── lib/                 # Utility libraries
+├── mdx-components.tsx/  # Register components for all mdx files of fumadocs
+├── public/              # Public static sources such as logo and ico of the site
+├── source.config.ts     # Fumadocs source config
+└── styles/              # Styles files of the site
+```
+
+### 如何贡献
+
+如果你想为 DevBeginner-Doc 做出贡献，可以通过以下步骤：
+
+1. Fork 这个仓库
+2. 创建一个新的分支
+3. 在你的分支上进行修改
+4. 提交你的修改并推送到你的 fork
+5. 创建一个 Pull Request
+
+我们欢迎任何形式的贡献，包括但不限于：
+
+- 提交新的文档
+- 修改现有文档
+- 修复拼写和语法错误
+- 提供反馈和建议
+
+感谢你的贡献！我们期待与你一起改进 DevBeginner-Doc。
