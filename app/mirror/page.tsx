@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useTitle } from 'react-use';
 import GoCaptcha from 'go-captcha-react';
 import { Toaster } from 'react-hot-toast';
@@ -13,7 +13,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import './_styles/mirror.css';
 import FilesList from './_components/FilesList';
 import { useMirrorDownload } from './_hooks/useMirrorDownload';
-import type { OriginBadgeProps, DownloadableFile } from './_libs/type';
+import type { OriginBadgeProps } from './_libs/type';
 
 export default function MirrorPage() {
   const {
@@ -29,7 +29,13 @@ export default function MirrorPage() {
     resetDownloadState,
   } = useMirrorDownload();
 
-  const [currentFileList, setCurrentFileList] = useState<DownloadableFile[]>([]);
+  const [currentCategory, setCurrentCategory] = useState('all');
+
+  const currentFileList = useMemo(() => {
+    if (!files) return [];
+    if (currentCategory === 'all') return files;
+    return files.filter((file) => file.catagory.toLowerCase().includes(currentCategory));
+  }, [files, currentCategory]);
 
   const captchaEvents = {
     refresh: refreshCaptcha,
@@ -41,11 +47,7 @@ export default function MirrorPage() {
   };
 
   const oneTabChange = (value: string) => {
-    if (value === 'all') {
-      setCurrentFileList(files);
-    } else {
-      setCurrentFileList(files.filter((file) => file.catagory.toLowerCase().includes(value)));
-    }
+    setCurrentCategory(value);
   };
 
   const OriginBadge: React.FC<OriginBadgeProps> = ({ origin, className }) => {
@@ -70,12 +72,6 @@ export default function MirrorPage() {
   };
 
   useTitle('软件仓库 - DevBeginner-Doc');
-
-  useEffect(() => {
-    if (files) {
-      setCurrentFileList(files);
-    }
-  }, [files.length]);
 
   return (
     <main className='flex flex-1 flex-col items-center pb-8'>
