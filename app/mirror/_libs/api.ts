@@ -1,4 +1,10 @@
-import type { DownloadableFile, CaptchaResponse, VerifyResponse, DownloadResponse } from './type';
+import type {
+  DownloadableFile,
+  CaptchaResponse,
+  VerifyResponse,
+  DownloadOriginResponse,
+  DownloadResponse,
+} from './type';
 
 async function getDownloadableFiles(): Promise<DownloadableFile[]> {
   const response = await fetch('/mirror/api/files');
@@ -33,6 +39,15 @@ async function verifyCaptcha(captchaId: string, dots: Array<{ x: number; y: numb
   return data;
 }
 
+async function getDownloadOrigin(): Promise<DownloadOriginResponse> {
+  const response = await fetch('/mirror/api/download/origin');
+  if (!response.ok) {
+    throw new Error('Failed to fetch download origin');
+  }
+  const data: DownloadOriginResponse = await response.json();
+  return data;
+}
+
 async function getDownloadLink(fileId: string, captchaId: string): Promise<DownloadResponse> {
   const response = await fetch('/mirror/api/download/request', {
     method: 'POST',
@@ -48,4 +63,4 @@ async function getDownloadLink(fileId: string, captchaId: string): Promise<Downl
   return data;
 }
 
-export { getDownloadableFiles, getCaptcha, verifyCaptcha, getDownloadLink };
+export { getDownloadableFiles, getCaptcha, verifyCaptcha, getDownloadOrigin, getDownloadLink };

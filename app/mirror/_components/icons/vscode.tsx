@@ -1,6 +1,6 @@
-export default function VscodeIcon(props: React.SVGProps<SVGSVGElement>) {
+export default function VscodeIcon() {
   return (
-    <svg fill='none' viewBox='0 0 1024 1024' {...props}>
+    <svg fill='none' viewBox='0 0 1024 1024' width={64} height={64}>
       <path
         d='M123.648 399.9232s-12.4928-12.288-11.264-19.968c1.024-7.7824 5.632-11.9296 5.632-11.9296l72.5504-61.7472s5.0176-2.4576 10.4448-1.8432c5.4272 0.6144 11.6736 4.608 11.6736 4.608l504.576 382.976 1.8944 200.6016-19.4048 13.1584-13.7728-2.7136L123.648 399.9232z'
         fill='#008BD1'

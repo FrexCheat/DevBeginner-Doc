@@ -15,7 +15,7 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
         children: <GithubInfo owner='FrexCheat' repo='DevBeginner-Doc' className='lg:-mx-2' />,
       },
       {
-        text: '返回首页',
+        text: '首页',
         url: '/',
         icon: <FaHome />,
       },

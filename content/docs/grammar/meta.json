@@ -1,11 +1,5 @@
 {
   "title": "语法基础",
   "description": "basic grammar tutorial",
-  "pages": [
-    "introduction",
-    "c",
-    "cpp",
-    "java",
-    "python"
-  ]
+  "pages": ["introduction", "c", "java"]
 }

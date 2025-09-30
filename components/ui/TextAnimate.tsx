@@ -1,6 +1,6 @@
 'use client';
 import { FC, useRef } from 'react';
-import { HTMLMotionProps, motion, useAnimation, useInView } from 'framer-motion';
+import { HTMLMotionProps, motion } from 'framer-motion';
 
 type AnimationType = 'fadeIn' | 'fadeInUp' | 'popIn' | 'shiftInUp' | 'rollIn' | 'whipIn' | 'whipInUp' | 'calmInUp';
 
@@ -83,10 +83,6 @@ const animationVariants = {
         transition: {
           ease: [0.125, 0.92, 0.69, 0.975] as const, //  Drawing attention to dynamic content or interactive elements, where the animation needs to be engaging but not abrupt
           duration: 0.75,
-          //   ease: [0.455, 0.03, 0.515, 0.955], // smooth and gradual acceleration followed by a steady deceleration towards the end of the animation
-          //   ease: [0.115, 0.955, 0.655, 0.939], // smooth and gradual acceleration followed by a steady deceleration towards the end of the animation
-          //   ease: [0.09, 0.88, 0.68, 0.98], // Very Gentle Onset, Swift Mid-Section, Soft Landing
-          //   ease: [0.11, 0.97, 0.64, 0.945], // Minimal Start, Energetic Acceleration, Smooth Closure
         },
       },
     },
@@ -156,9 +152,6 @@ const animationVariants = {
         transition: {
           duration: 0.65,
           ease: [0.65, 0, 0.75, 1] as const, // Great! Swift Beginning, Prolonged Ease, Quick Finish
-          //   ease: [0.75, 0.05, 0.85, 1], // Quick Start, Smooth Middle, Sharp End
-          //   ease: [0.7, -0.25, 0.9, 1.25], // Fast Acceleration, Gentle Slowdown, Sudden Snap
-          //   ease: [0.7, -0.5, 0.85, 1.5], // Quick Leap, Soft Glide, Snappy Closure
         },
       },
     },
@@ -178,9 +171,6 @@ const animationVariants = {
         y: `0em`,
         transition: {
           duration: 0.45,
-          //   ease: [0.75, 0.05, 0.85, 1], // Quick Start, Smooth Middle, Sharp End
-          //   ease: [0.7, -0.25, 0.9, 1.25], // Fast Acceleration, Gentle Slowdown, Sudden Snap
-          //   ease: [0.65, 0, 0.75, 1], // Great! Swift Beginning, Prolonged Ease, Quick Finish
           ease: [0.85, 0.1, 0.9, 1.2] as const, // Rapid Initiation, Subtle Slow, Sharp Conclusion
         },
       },
@@ -189,27 +179,9 @@ const animationVariants = {
 };
 
 const TextAnimate: FC<Props> = ({ text, type = 'whipInUp', ...props }: Props) => {
-  //   const { ref, inView } = useInView({
-  //     threshold: 0.5,
-  //     triggerOnce: true,
-  //   });
-
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   const letters = Array.from(text);
   const { container, child } = animationVariants[type];
-
-  const ctrls = useAnimation();
-
-  //   useEffect(() => {
-  //     if (isInView) {
-  //       ctrls.start("visible");
-  //     }
-  //     if (!isInView) {
-  //       ctrls.start("hidden");
-  //     }
-  //   }, [ctrls, isInView]);
 
   if (type === 'rollIn' || type === 'whipIn') {
     return (
@@ -226,9 +198,7 @@ const TextAnimate: FC<Props> = ({ text, type = 'whipInUp', ...props }: Props) =>
               variants={container}
               transition={{
                 delayChildren: index * 0.13,
-                // delayChildren: index * 0.35,
                 staggerChildren: 0.025,
-                // staggerChildren: 0.05,
               }}
             >
               {word.split('').map((character, index) => {

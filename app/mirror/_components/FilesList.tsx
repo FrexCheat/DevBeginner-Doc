@@ -17,7 +17,7 @@ const FilesList: React.FC<FilesListProps> = ({ files, onDownload }) => {
         <ItemCard key={file.id}>
           <div className='flex h-20 flex-row items-center gap-8'>
             {icons[file.name as keyof typeof icons] ? (
-              createElement(icons[file.name as keyof typeof icons], { width: 64, height: 64 })
+              createElement(icons[file.name as keyof typeof icons])
             ) : (
               <FaRegFile size={48} />
             )}

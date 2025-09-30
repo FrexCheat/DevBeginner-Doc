@@ -6,7 +6,10 @@ function Card({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='card'
-      className={checkAndMerge('bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm', className)}
+      className={checkAndMerge(
+        'bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm',
+        className
+      )}
       {...props}
     />
   );
@@ -30,7 +33,13 @@ function CardTitle({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
-  return <div data-slot='card-description' className={checkAndMerge('text-muted-foreground text-sm', className)} {...props} />;
+  return (
+    <div
+      data-slot='card-description'
+      className={checkAndMerge('text-muted-foreground text-sm', className)}
+      {...props}
+    />
+  );
 }
 
 function CardAction({ className, ...props }: React.ComponentProps<'div'>) {
@@ -49,7 +58,11 @@ function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
 
 function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div data-slot='card-footer' className={checkAndMerge('flex items-center px-6 [.border-t]:pt-6', className)} {...props} />
+    <div
+      data-slot='card-footer'
+      className={checkAndMerge('flex items-center px-6 [.border-t]:pt-6', className)}
+      {...props}
+    />
   );
 }
 

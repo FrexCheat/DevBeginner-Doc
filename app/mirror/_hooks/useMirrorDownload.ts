@@ -1,9 +1,9 @@
-import { useReducer, useCallback, useEffect } from 'react';
+import { useReducer, useCallback } from 'react';
 import { useAsync, useDebounce } from 'react-use';
 import toast from 'react-hot-toast';
 
 import type { CaptchaResponse } from '../_libs/type';
-import { getDownloadableFiles, getCaptcha, verifyCaptcha, getDownloadLink } from '../_libs/api';
+import { getDownloadableFiles, getCaptcha, verifyCaptcha, getDownloadOrigin, getDownloadLink } from '../_libs/api';
 
 type State = {
   captchaData: CaptchaResponse | null;
@@ -53,14 +53,22 @@ export function useMirrorDownload() {
   const { captchaData, isPopperOpen, clickedId, currentFileId } = state;
 
   const filesState = useAsync(async () => {
-    return await getDownloadableFiles();
+    try {
+      return await getDownloadableFiles();
+    } catch (error) {
+      toast.error('获取文件列表失败');
+      throw error;
+    }
   }, []);
 
-  useEffect(() => {
-    if (filesState.error) {
-      toast.error('获取文件列表失败');
+  const downloadOrigin = useAsync(async () => {
+    try {
+      return await getDownloadOrigin();
+    } catch (error) {
+      toast.error('获取下载源失败');
+      throw error;
     }
-  }, [filesState.error]);
+  }, []);
 
   useDebounce(
     () => {
@@ -127,8 +135,16 @@ export function useMirrorDownload() {
           return;
         }
 
-        window.open('/mirror' + downloadResult.download_url, '_blank');
-        toast.success('开始下载');
+        if (downloadOrigin.value?.origin === 'local') {
+          toast.success('开始下载');
+          window.open('/mirror' + downloadResult.download_url, '_blank');
+        } else if (downloadOrigin.value?.origin === 's3') {
+          toast.success('开始下载');
+          window.open(downloadResult.download_url, '_blank');
+        } else {
+          toast.error('未知的下载源');
+          return;
+        }
       } catch (err) {
         if (err instanceof Error) {
           toast.error(err.message || '下载失败！');
@@ -137,13 +153,14 @@ export function useMirrorDownload() {
         dispatch({ type: 'RESET_DOWNLOAD_STATE' });
       }
     },
-    [currentFileId]
+    [currentFileId, downloadOrigin]
   );
 
   return {
     files: filesState.value || [],
     loading: filesState.loading,
     error: filesState.error?.message || null,
+    downloadOrigin: downloadOrigin.value?.origin || 'unknown',
     currentFileId,
     captchaData,
     isPopperOpen,

@@ -1,7 +1,7 @@
 interface DownloadableFile {
   id: string;
   name: string;
-  local_url: string;
+  catagory: string;
   size: string;
   version: string;
   last_updated: string;
@@ -19,10 +19,26 @@ interface VerifyResponse {
   message: string;
 }
 
+interface DownloadOriginResponse {
+  origin: string;
+}
+
 interface DownloadResponse {
   success: boolean;
   message: string;
   download_url?: string;
 }
 
-export type { DownloadableFile, CaptchaResponse, VerifyResponse, DownloadResponse };
+interface OriginBadgeProps {
+  origin: string;
+  className?: string;
+}
+
+export type {
+  DownloadableFile,
+  CaptchaResponse,
+  VerifyResponse,
+  DownloadOriginResponse,
+  DownloadResponse,
+  OriginBadgeProps,
+};

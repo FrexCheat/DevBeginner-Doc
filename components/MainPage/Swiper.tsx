@@ -12,12 +12,12 @@ const slides = [
   {
     image: '/assets/ads/lab-ai.png',
     content: 'ZZULI 人工智能创新实验室 - 2025 级招新 👈',
-    link: '/ai-lab',
+    link: 'https://qm.qq.com/q/exT622RoqY',
   },
   {
     image: '/assets/ads/lab-software.png',
     content: 'ZZULI 软件创新实验室 - 2025 级招新 👈',
-    link: '/software-innovation',
+    link: 'https://qm.qq.com/q/exT622RoqY',
   },
 ];
 

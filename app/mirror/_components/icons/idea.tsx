@@ -1,6 +1,6 @@
-export default function IdeaIcon(props: React.SVGProps<SVGSVGElement>) {
+export default function IdeaIcon() {
   return (
-    <svg fill='none' viewBox='0 0 64 64' {...props}>
+    <svg fill='none' viewBox='0 0 64 64' width={64} height={64}>
       <defs>
         <linearGradient
           id='__JETBRAINS_COM__LOGO_PREFIX__2'
