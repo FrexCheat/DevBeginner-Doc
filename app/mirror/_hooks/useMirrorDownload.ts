@@ -135,10 +135,7 @@ export function useMirrorDownload() {
           return;
         }
 
-        if (downloadOrigin.value?.origin === 'local') {
-          toast.success('开始下载');
-          window.open('/mirror' + downloadResult.download_url, '_blank');
-        } else if (downloadOrigin.value?.origin === 's3') {
+        if (downloadOrigin.value?.origin === 'local' || downloadOrigin.value?.origin === 's3') {
           toast.success('开始下载');
           window.open(downloadResult.download_url, '_blank');
         } else {

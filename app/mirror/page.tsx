@@ -80,7 +80,7 @@ export default function MirrorPage() {
     if (files) {
       setCurrentFileList(files);
     }
-  }, [files]);
+  }, [files.length]);
 
   return (
     <main className='flex flex-1 flex-col items-center pb-8'>
