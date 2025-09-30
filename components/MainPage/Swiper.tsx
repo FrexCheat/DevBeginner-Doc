@@ -17,7 +17,7 @@ const slides = [
   {
     image: '/assets/ads/lab-software.png',
     content: 'ZZULI 软件创新实验室 - 2025 级招新 👈',
-    link: 'https://qm.qq.com/q/exT622RoqY',
+    link: 'https://qm.qq.com/q/sxQQr1oIaO',
   },
 ];
 
